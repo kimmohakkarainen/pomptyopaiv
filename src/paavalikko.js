@@ -6,7 +6,8 @@ import {
   Nav,
   DropdownButton,
   ButtonGroup,
-  Dropdown
+  Dropdown,
+  Form
 } from "react-bootstrap";
 
 export default function Paavalikko() {
@@ -33,7 +34,6 @@ export default function Paavalikko() {
       {selected === "1" && <Eka />}
       {selected === "2" && <Toka />}
       {selected === "3" && <Kolmas />}
-      {selected === "4" && <Neljas />}
     </div>
   );
 }
@@ -96,6 +96,50 @@ function Eka() {
         <Dropdown.Item href="#/action-1">7</Dropdown.Item>
         <Dropdown.Item href="#/action-1">8+</Dropdown.Item>
       </DropdownButton>
+
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="dark"
+        title="juoruaminen"
+      >
+        <Dropdown.Item href="#/action-1">ei ollenkaan</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">vähän</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">vähän enemmän</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">melko paljon</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">paljon</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">kokoajan</Dropdown.Item>
+      </DropdownButton>
+
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="light"
+        title="lenkin arvio"
+      >
+        <Dropdown.Item href="#/action-1">huono</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">kohtalainen</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ok</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">hyvä</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
+      </DropdownButton>
+
+      <Form>
+        <Form.Group id="radio-group">
+          <Form.Check
+            type="radio"
+            id="radio-1"
+            name="radios"
+            label="rauhoittuminen pihassa"
+          />
+          <Form.Check
+            type="radio"
+            id="radio-2"
+            name="radios"
+            label="ei rauhoittumista"
+          />
+        </Form.Group>
+      </Form>
     </>
   );
 }
