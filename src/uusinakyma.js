@@ -6,13 +6,12 @@ export default function Uusinakyma() {
     <Jumbotron>
       <h1 variant="danger">Uusi nakyma</h1>
       <p>Kootut selitykset tähän</p>
-      <Button variant="primary">Primary</Button>{" "}
-      <Button variant="secondary">Primary</Button>{" "}
-      <Button variant="success">Primary</Button>{" "}
-      <Button variant="warning">Primary</Button>{" "}
-      <Button variant="danger">Primary</Button>{" "}
-      <Badge variant="secondary">New</Badge>
-      <Button variant="info">info</Button>{" "}
+      <Button variant="primary">kalenteri</Button>{" "}
+      <Button variant="secondary">lenkit</Button>{" "}
+      <Button variant="success">hypokoira</Button>{" "}
+      <Button variant="warning">sosiaalistaminen</Button>{" "}
+      <Button variant="danger">työskentely</Button>{" "}
+      <Button variant="info">muuta</Button>{" "}
     </Jumbotron>
   );
 }
