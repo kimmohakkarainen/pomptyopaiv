@@ -34,9 +34,11 @@ function Paavalikko({ postWorking, working }) {
           <Nav.Link eventKey="3">sosiaalistaminen</Nav.Link>
         </Nav.Item>
       </Nav>
-      {selected === "1" && <Eka />}
+      {selected === "1" && <Eka working={working} postWorking={postWorking} />}
       {selected === "2" && <Toka working={working} postWorking={postWorking} />}
-      {selected === "3" && <Kolmas />}
+      {selected === "3" && (
+        <Kolmas working={working} postWorking={postWorking} />
+      )}
       <table>
         <tbody>
           {Object.entries(working).map(([key, value]) => {
@@ -53,7 +55,16 @@ function Paavalikko({ postWorking, working }) {
   );
 }
 
-function Eka() {
+function Eka({ postWorking, working }) {
+  function katuLenkki(min) {
+    const t = working.katulenkki + min;
+    postWorking(Object.assign([], working, { katulenkki: t }));
+  }
+  function metsaLenkki(min) {
+    const t = working.metsalenkki + min;
+    postWorking(Object.assign([], working, { metsalenkki: t }));
+  }
+
   return (
     <>
       <DropdownButton
@@ -62,19 +73,19 @@ function Eka() {
         variant="danger"
         title="katulenkki"
       >
-        <Dropdown.Item href="#/action-1">0:10</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">0:15</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:20</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:30</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:40</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:50</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:60</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:10</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:20</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:30</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:40</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:50</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">2:00+</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(10)}>0:10</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(15)}>0:15</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(20)}>0:20</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(30)}>0:30</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(40)}>0:40</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(50)}>0:50</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(60)}>0:60</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(70)}>1:10</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(80)}>1:20</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(90)}>1:30</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(100)}>1:40</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(110)}>1:50</Dropdown.Item>
+        <Dropdown.Item onClick={() => katuLenkki(120)}>2:00</Dropdown.Item>
       </DropdownButton>
       <DropdownButton
         as={ButtonGroup}
@@ -82,36 +93,29 @@ function Eka() {
         variant="info"
         title="metsälenkki"
       >
-        <Dropdown.Item href="#/action-1">0:10</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">0:15</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:20</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:30</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:40</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:50</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:60</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:10</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:20</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:30</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:40</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:50</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">2:00+</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(10)}>0:10</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(15)}>0:15</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(20)}>0:20</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(30)}>0:30</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(40)}>0:40</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(50)}>0:50</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(60)}>0:60</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(70)}>1:10</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(80)}>1:20</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(90)}>1:30</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(100)}>1:40</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(110)}>1:50</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(120)}>2:00+</Dropdown.Item>
       </DropdownButton>
-      <DropdownButton
-        as={ButtonGroup}
-        id="dropdown-basic-button"
+      <Button
         variant="warning"
-        title="koirien ohitukset"
+        onClick={() => {
+          const t = working.ohitukset_lenkilla + 1;
+          postWorking(Object.assign([], working, { ohitukset_lenkilla: t }));
+        }}
       >
-        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">2</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">3</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">4</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">5</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">6</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">7</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">8+</Dropdown.Item>
-      </DropdownButton>
-
+        ohitukset lenkillä
+      </Button>{" "}
       <DropdownButton
         as={ButtonGroup}
         id="dropdown-basic-button"
@@ -122,7 +126,6 @@ function Eka() {
         <Dropdown.Item href="#/action-1">jonkin verran</Dropdown.Item>
         <Dropdown.Item href="#/action-1">paljon</Dropdown.Item>
       </DropdownButton>
-
       <DropdownButton
         as={ButtonGroup}
         id="dropdown-basic-button"
@@ -135,16 +138,15 @@ function Eka() {
         <Dropdown.Item href="#/action-1">hyvä</Dropdown.Item>
         <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
       </DropdownButton>
-
-      <DropdownButton
-        as={ButtonGroup}
-        id="dropdown-basic-button"
+      <Button
         variant="secondary"
-        title="rauhoittuminen pihassa"
+        onClick={() => {
+          const t = working.rauhoittuminen + 1;
+          postWorking(Object.assign([], working, { rauhoittuminen: t }));
+        }}
       >
-        <Dropdown.Item href="#/action-1">kyllä</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ei</Dropdown.Item>
-      </DropdownButton>
+        rauhoittuminen pihassa
+      </Button>{" "}
     </>
   );
 }
@@ -166,7 +168,15 @@ function Toka({ postWorking, working }) {
         >
           ulkona
         </Dropdown.Item>
-        <Dropdown.Item href="#/action-1">sisällä</Dropdown.Item>
+
+        <Dropdown.Item
+          onClick={() => {
+            const t = working.namietsinta_sisalla + 1;
+            postWorking(Object.assign([], working, { namietsinta_sisalla: t }));
+          }}
+        >
+          sisällä
+        </Dropdown.Item>
       </DropdownButton>
       <DropdownButton
         as={ButtonGroup}
@@ -189,7 +199,7 @@ function Toka({ postWorking, working }) {
         as={ButtonGroup}
         id="dropdown-basic-button"
         variant="success"
-        title="erottelu"
+        title="ilmaisu"
       >
         <Dropdown.Item href="#/action-1">kansio</Dropdown.Item>
         <Dropdown.Item href="#/action-1">laatikko</Dropdown.Item>
@@ -233,28 +243,22 @@ function Toka({ postWorking, working }) {
   );
 }
 
-function Kolmas() {
+function Kolmas({ postWorking, working }) {
   return (
     <>
-      <DropdownButton
-        as={ButtonGroup}
-        id="dropdown-basic-button"
+      <Button
         variant="success"
-        title="koiria"
+        onClick={() => {
+          const t = working.ohituksia_sosiaalistamisessa + 1;
+          postWorking(
+            Object.assign([], working, {
+              ohituksia_sosiaalistamisessa: t
+            })
+          );
+        }}
       >
-        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">2</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">3</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">4</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">5</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">6</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">7</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">8</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">9</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">10</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">11</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">12+</Dropdown.Item>
-      </DropdownButton>
+        ohituksia
+      </Button>
 
       <DropdownButton
         as={ButtonGroup}
