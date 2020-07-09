@@ -1,6 +1,9 @@
 export default function pompState(
   state = {
-    calendar: []
+    calendar: [],
+    working: {
+      alytehtava: 0
+    }
   },
   action
 ) {

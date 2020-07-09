@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import {
   Jumbotron,
   Badge,
@@ -10,9 +11,11 @@ import {
   Form
 } from "react-bootstrap";
 
-export default function Paavalikko() {
-  const [selected, setSelected] = useState("1");
+import { fetchWorking, postWorking } from "./actions";
 
+function Paavalikko({ postWorking, working }) {
+  const [selected, setSelected] = useState("1");
+  console.log(working);
   return (
     <div>
       <Nav
@@ -32,8 +35,16 @@ export default function Paavalikko() {
         </Nav.Item>
       </Nav>
       {selected === "1" && <Eka />}
-      {selected === "2" && <Toka />}
+      {selected === "2" && <Toka working={working} postWorking={postWorking} />}
       {selected === "3" && <Kolmas />}
+      <table>
+        <tbody>
+          <tr>
+            <td>Älytehtävät</td>
+            <td>{working.alytehtava}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
@@ -45,7 +56,7 @@ function Eka() {
         as={ButtonGroup}
         id="dropdown-basic-button"
         variant="danger"
-        title="katulenkki (min)"
+        title="katulenkki"
       >
         <Dropdown.Item href="#/action-1">0:10</Dropdown.Item>
         <Dropdown.Item href="#/action-2">0:15</Dropdown.Item>
@@ -65,7 +76,7 @@ function Eka() {
         as={ButtonGroup}
         id="dropdown-basic-button"
         variant="info"
-        title="metsälenkki (min)"
+        title="metsälenkki"
       >
         <Dropdown.Item href="#/action-1">0:10</Dropdown.Item>
         <Dropdown.Item href="#/action-2">0:15</Dropdown.Item>
@@ -104,11 +115,8 @@ function Eka() {
         title="juoruaminen"
       >
         <Dropdown.Item href="#/action-1">ei ollenkaan</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">vähän</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">vähän enemmän</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">melko paljon</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">jonkin verran</Dropdown.Item>
         <Dropdown.Item href="#/action-1">paljon</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">kokoajan</Dropdown.Item>
       </DropdownButton>
 
       <DropdownButton
@@ -124,38 +132,176 @@ function Eka() {
         <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
       </DropdownButton>
 
-      <Form>
-        <Form.Group id="radio-group">
-          <Form.Check
-            type="radio"
-            id="radio-1"
-            name="radios"
-            label="rauhoittuminen pihassa"
-          />
-          <Form.Check
-            type="radio"
-            id="radio-2"
-            name="radios"
-            label="ei rauhoittumista"
-          />
-        </Form.Group>
-      </Form>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="secondary"
+        title="rauhoittuminen pihassa"
+      >
+        <Dropdown.Item href="#/action-1">kyllä</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ei</Dropdown.Item>
+      </DropdownButton>
     </>
   );
 }
 
-function Toka() {
+function Toka({ postWorking, working }) {
   return (
-    <Jumbotron>
-      <h1>Toka</h1>
-    </Jumbotron>
+    <>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="danger"
+        title="naminetsintää"
+      >
+        <Dropdown.Item
+          onClick={() => {
+            const t = working.alytehtava + 1;
+            postWorking({ alytehtava: t });
+          }}
+        >
+          ulkona
+        </Dropdown.Item>
+        <Dropdown.Item href="#/action-1">sisällä</Dropdown.Item>
+      </DropdownButton>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="warning"
+        title="erottelu"
+      >
+        <Dropdown.Item href="#/action-1">keittiö</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">olohuone</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">makuhuone</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">eteinen</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">parveke</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ainon huone</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ala-aula</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">kylpyhuone</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">telkkarihuone</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">takapiha</Dropdown.Item>
+      </DropdownButton>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="success"
+        title="erottelu"
+      >
+        <Dropdown.Item href="#/action-1">kansio</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">laatikko</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ovi</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ihminen</Dropdown.Item>
+      </DropdownButton>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="primary"
+        title="tekijä"
+      >
+        <Dropdown.Item href="#/action-1">Terhi</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">Kimmo</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">Aino</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">Henri</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">joku muu...</Dropdown.Item>
+      </DropdownButton>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="secondary"
+        title="arvio"
+      >
+        <Dropdown.Item href="#/action-1">huono</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">kohtalainen</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ok</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">hyvä</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
+      </DropdownButton>
+      <Button
+        variant="info"
+        onClick={() => {
+          const t = working.alytehtava + 1;
+          postWorking({ alytehtava: t });
+        }}
+      >
+        älytehtävä
+      </Button>{" "}
+    </>
   );
 }
 
 function Kolmas() {
   return (
-    <Jumbotron>
-      <h1>Kolmas</h1>
-    </Jumbotron>
+    <>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="success"
+        title="koiria"
+      >
+        <Dropdown.Item href="#/action-1">1</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">2</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">3</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">4</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">5</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">6</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">7</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">8</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">9</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">10</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">11</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">12+</Dropdown.Item>
+      </DropdownButton>
+
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="danger"
+        title="kesto"
+      >
+        <Dropdown.Item href="#/action-1">0:10</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">0:15</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">0:20</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">0:30</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">0:40</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">0:50</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">0:60</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">1:10</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">1:20</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">1:30</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">1:40</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">1:50</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">2:00+</Dropdown.Item>
+      </DropdownButton>
+
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="warning"
+        title="lenkin arvio"
+      >
+        <Dropdown.Item href="#/action-1">huono</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">kohtalainen</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">ok</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">hyvä</Dropdown.Item>
+        <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
+      </DropdownButton>
+    </>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    working: state.working
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    postWorking: params => dispatch(postWorking(params))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Paavalikko);
