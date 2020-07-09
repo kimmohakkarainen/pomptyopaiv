@@ -27,6 +27,5 @@ export default function pompState(
   },
   action
 ) {
-  console.log(action);
   return Object.assign([], state, action.payload);
 }

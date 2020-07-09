@@ -1,5 +1,4 @@
 export function postWorking(params) {
-  console.log(params);
   return dispatch => {
     dispatch(postWorkingSucceeded(params));
   };

@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
-  Jumbotron,
-  Badge,
   Button,
   Nav,
   DropdownButton,
@@ -11,7 +9,7 @@ import {
   Form
 } from "react-bootstrap";
 
-import { fetchWorking, postWorking } from "./actions";
+import { postWorking } from "./actions";
 
 function Paavalikko({ postWorking, working }) {
   const [selected, setSelected] = useState("1");
