@@ -39,10 +39,14 @@ function Paavalikko({ postWorking, working }) {
       {selected === "3" && <Kolmas />}
       <table>
         <tbody>
-          <tr>
-            <td>Älytehtävät</td>
-            <td>{working.alytehtava}</td>
-          </tr>
+          {Object.entries(working).map(([key, value]) => {
+            return (
+              <tr>
+                <td>{key}</td>
+                <td>{value}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -156,8 +160,8 @@ function Toka({ postWorking, working }) {
       >
         <Dropdown.Item
           onClick={() => {
-            const t = working.alytehtava + 1;
-            postWorking({ alytehtava: t });
+            const t = working.namietsinta_ulkona + 1;
+            postWorking(Object.assign([], working, { namietsinta_ulkona: t }));
           }}
         >
           ulkona
@@ -220,7 +224,7 @@ function Toka({ postWorking, working }) {
         variant="info"
         onClick={() => {
           const t = working.alytehtava + 1;
-          postWorking({ alytehtava: t });
+          postWorking(Object.assign([], working, { alytehtava: t }));
         }}
       >
         älytehtävä
