@@ -1,14 +1,16 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Jumbotron, Badge, Button, Table } from "react-bootstrap";
 import Paavalikko from "./paavalikko.js";
 
-export default function Kalenteri() {
+function Kalenteri({ calendar }) {
   const [sivu, setSivu] = useState(null);
   function onClick(event) {
     console.log(event.target.id);
     setSivu(event.target.id);
   }
 
+  console.log(calendar);
   console.log(sivu);
   return (
     <>
@@ -81,3 +83,23 @@ export default function Kalenteri() {
     </>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    calendar: []
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    /*
+    fetchQueue: () => dispatch(fetchQueue()),
+    postQueue: params => dispatch(postQueue(params))
+    */
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Kalenteri);
