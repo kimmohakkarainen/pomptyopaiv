@@ -43,7 +43,7 @@ function Paavalikko({ postWorking, working }) {
         <tbody>
           {Object.entries(working).map(([key, value]) => {
             return (
-              <tr>
+              <tr key={key}>
                 <td>{key}</td>
                 <td>{value}</td>
               </tr>
@@ -71,8 +71,8 @@ function Eka({ postWorking, working }) {
   }
 
   function lenkinArvio(arvio) {
-    const t = working.arvio + arvio;
-    postWorking(Object.assign([], working, { arvio: t }));
+    const t = working.lenkinarvio + arvio;
+    postWorking(Object.assign([], working, { lenkinarvio: t }));
   }
 
   return (
@@ -149,7 +149,7 @@ function Eka({ postWorking, working }) {
         title="lenkin arvio"
       >
         <Dropdown.Item onClick={() => lenkinArvio("Huon")}>huono</Dropdown.Item>
-        <Dropdown.Item onClick={() => lenkinArvio("Kohtl")}>
+        <Dropdown.Item onClick={() => lenkinArvio("Koht")}>
           kohtalainen
         </Dropdown.Item>
         <Dropdown.Item onClick={() => lenkinArvio("Ok")}>ok</Dropdown.Item>
@@ -181,6 +181,22 @@ function Toka({ postWorking, working }) {
     const t = working.ilmaisu + arvio;
     postWorking(Object.assign([], working, { ilmaisu: t }));
   }
+
+  function tekija(arvio) {
+    const t = working.tekija + arvio;
+    postWorking(Object.assign([], working, { tekija: t }));
+  }
+
+  function kontakti(arvio) {
+    const t = working.kontakti + arvio;
+    postWorking(Object.assign([], working, { kontakti: t }));
+  }
+
+  function arvio(arvio) {
+    const t = working.arvio + arvio;
+    postWorking(Object.assign([], working, { arvio: t }));
+  }
+
   return (
     <>
       <DropdownButton
@@ -241,13 +257,11 @@ function Toka({ postWorking, working }) {
         title="ilmaisu"
       >
         <Dropdown.Item onClick={() => ilmaisu("kansio")}>kansio</Dropdown.Item>
-        <Dropdown.Item onClick={() => ilmaisu("laatikko")}>
+        <Dropdown.Item onClick={() => ilmaisu("laatik")}>
           laatikko
         </Dropdown.Item>
         <Dropdown.Item onClick={() => ilmaisu("ovi")}>ovi</Dropdown.Item>
-        <Dropdown.Item onClick={() => ilmaisu("ihminen")}>
-          ihminen
-        </Dropdown.Item>
+        <Dropdown.Item onClick={() => ilmaisu("ihmin")}>ihminen</Dropdown.Item>
       </DropdownButton>
       <DropdownButton
         as={ButtonGroup}
@@ -255,11 +269,27 @@ function Toka({ postWorking, working }) {
         variant="primary"
         title="tekijä"
       >
-        <Dropdown.Item href="#/action-1">Terhi</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">Kimmo</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">Aino</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">Henri</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">joku muu...</Dropdown.Item>
+        <Dropdown.Item onClick={() => tekija("Terh")}>Terhi</Dropdown.Item>
+        <Dropdown.Item onClick={() => tekija("Kim")}>Kimmo</Dropdown.Item>
+        <Dropdown.Item onClick={() => tekija("Ain")}>Aino</Dropdown.Item>
+        <Dropdown.Item onClick={() => tekija("Henr")}>Henri</Dropdown.Item>
+        <Dropdown.Item onClick={() => tekija("jok muu")}>
+          joku muu...
+        </Dropdown.Item>
+      </DropdownButton>
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="dark"
+        title="kontaktityösk"
+      >
+        <Dropdown.Item onClick={() => kontakti("seur")}>seuraa</Dropdown.Item>
+        <Dropdown.Item onClick={() => kontakti("seur-ist")}>
+          seuraa-istu
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => kontakti("kk")}>
+          katsekontakti
+        </Dropdown.Item>
       </DropdownButton>
       <DropdownButton
         as={ButtonGroup}
@@ -267,11 +297,11 @@ function Toka({ postWorking, working }) {
         variant="secondary"
         title="arvio"
       >
-        <Dropdown.Item href="#/action-1">huono</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">kohtalainen</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ok</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">hyvä</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
+        <Dropdown.Item onClick={() => arvio("huon")}>huono</Dropdown.Item>
+        <Dropdown.Item onClick={() => arvio("koht")}>kohtalainen</Dropdown.Item>
+        <Dropdown.Item onClick={() => arvio("ok")}>ok</Dropdown.Item>
+        <Dropdown.Item onClick={() => arvio("hyv")}>hyvä</Dropdown.Item>
+        <Dropdown.Item onClick={() => arvio("maht")}>mahtava</Dropdown.Item>
       </DropdownButton>
       <Button
         variant="info"
@@ -291,6 +321,17 @@ function Kolmas({ postWorking, working }) {
     const t = working.sosiaalistaminen_kesto + min;
     postWorking(Object.assign([], working, { sosiaalistaminen_kesto: t }));
   }
+
+  function sosarvio(arvio) {
+    const t = working.sosarvio + arvio;
+    postWorking(Object.assign([], working, { sosiaalistamisenarvio: t }));
+  }
+
+  function sos(arvio) {
+    const t = working.sosiaalistettavat + arvio;
+    postWorking(Object.assign([], working, { sosiaalistettavat: t }));
+  }
+
   return (
     <>
       <Button
@@ -331,14 +372,41 @@ function Kolmas({ postWorking, working }) {
       <DropdownButton
         as={ButtonGroup}
         id="dropdown-basic-button"
-        variant="warning"
-        title="lenkin arvio"
+        variant="secondary"
+        title="sosiaalistettavat"
       >
-        <Dropdown.Item href="#/action-1">huono</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">kohtalainen</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ok</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">hyvä</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("PikAut")}>pieni auto</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("IsAut")}>iso auto</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("Kis")}>kissa</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("Peur")}>peura</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("lint")}>lintu</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("jänö")}>jänis</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("PikKoir")}>
+          pieni koira
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("KeskKoir")}>
+          kesk. koira
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("IsKoir")}>iso koira</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("lap")}>lapsi</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("aik")}>aikuinen</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("vanh")}>vanhus</Dropdown.Item>
+        <Dropdown.Item onClick={() => sos("lait")}>laite</Dropdown.Item>
+      </DropdownButton>
+
+      <DropdownButton
+        as={ButtonGroup}
+        id="dropdown-basic-button"
+        variant="warning"
+        title="arvio"
+      >
+        <Dropdown.Item onClick={() => sosarvio("huon")}>huono</Dropdown.Item>
+        <Dropdown.Item onClick={() => sosarvio("koht")}>
+          kohtalainen
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => sosarvio("ok")}>ok</Dropdown.Item>
+        <Dropdown.Item onClick={() => sosarvio("hyv")}>hyvä</Dropdown.Item>
+        <Dropdown.Item onClick={() => sosarvio("maht")}>mahtava</Dropdown.Item>
       </DropdownButton>
     </>
   );

@@ -6,15 +6,20 @@ export default function pompState(
       metsalenkki: 0,
       ohitukset_lenkilla: 0,
       juoruaminen: [],
-      arvio: [],
+      lenkinarvio: [],
       rauhoittuminen: 0,
       namietsinta_sisalla: 0,
       namietsinta_ulkona: 0,
       erottelu: [],
       ilmaisu: [],
+      tekija: [],
+      kontakti: [],
+      arvio: [],
       alytehtava: 0,
       ohituksia_sosiaalistamisessa: 0,
-      sosiaalistaminen_kesto: 0
+      sosiaalistaminen_kesto: 0,
+      sosiaalistettavat: [],
+      sosiaalistamisenarvio: []
     }
   },
   action
