@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Jumbotron, Badge, Button, Table } from "react-bootstrap";
+import Paavalikko from "./paavalikko.js";
 
 export default function Kalenteri() {
   const [sivu, setSivu] = useState(null);
@@ -78,14 +79,5 @@ export default function Kalenteri() {
       )}
       {sivu != null && <Paavalikko />}
     </>
-  );
-}
-
-function Paavalikko() {
-  return (
-    <Jumbotron>
-      <h1>Paavalikko</h1>
-      <p>tähän päävälikko</p>
-    </Jumbotron>
   );
 }
