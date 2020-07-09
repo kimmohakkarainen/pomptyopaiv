@@ -5,9 +5,13 @@ export default function pompState(
       katulenkki: 0,
       metsalenkki: 0,
       ohitukset_lenkilla: 0,
+      juoruaminen: [],
+      arvio: [],
       rauhoittuminen: 0,
       namietsinta_sisalla: 0,
       namietsinta_ulkona: 0,
+      erottelu: [],
+      ilmaisu: [],
       alytehtava: 0,
       ohituksia_sosiaalistamisessa: 0,
       sosiaalistaminen_kesto: 0

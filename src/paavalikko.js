@@ -65,6 +65,16 @@ function Eka({ postWorking, working }) {
     postWorking(Object.assign([], working, { metsalenkki: t }));
   }
 
+  function juoruaminen(arvio) {
+    const t = working.juoruaminen + arvio;
+    postWorking(Object.assign([], working, { juoruaminen: t }));
+  }
+
+  function lenkinArvio(arvio) {
+    const t = working.arvio + arvio;
+    postWorking(Object.assign([], working, { arvio: t }));
+  }
+
   return (
     <>
       <DropdownButton
@@ -122,9 +132,15 @@ function Eka({ postWorking, working }) {
         variant="dark"
         title="juoruaminen"
       >
-        <Dropdown.Item href="#/action-1">ei ollenkaan</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">jonkin verran</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">paljon</Dropdown.Item>
+        <Dropdown.Item onClick={() => juoruaminen("Ei")}>
+          ei ollenkaan
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => juoruaminen("Jnkv")}>
+          jonkin verran
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => juoruaminen("Palj")}>
+          paljon
+        </Dropdown.Item>
       </DropdownButton>
       <DropdownButton
         as={ButtonGroup}
@@ -132,11 +148,15 @@ function Eka({ postWorking, working }) {
         variant="light"
         title="lenkin arvio"
       >
-        <Dropdown.Item href="#/action-1">huono</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">kohtalainen</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ok</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">hyvä</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">mahtava</Dropdown.Item>
+        <Dropdown.Item onClick={() => lenkinArvio("Huon")}>huono</Dropdown.Item>
+        <Dropdown.Item onClick={() => lenkinArvio("Kohtl")}>
+          kohtalainen
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => lenkinArvio("Ok")}>ok</Dropdown.Item>
+        <Dropdown.Item onClick={() => lenkinArvio("Hyv")}>hyvä</Dropdown.Item>
+        <Dropdown.Item onClick={() => lenkinArvio("Maht")}>
+          mahtava
+        </Dropdown.Item>
       </DropdownButton>
       <Button
         variant="secondary"
@@ -152,6 +172,15 @@ function Eka({ postWorking, working }) {
 }
 
 function Toka({ postWorking, working }) {
+  function erottelu(arvio) {
+    const t = working.erottelu + arvio;
+    postWorking(Object.assign([], working, { erottelu: t }));
+  }
+
+  function ilmaisu(arvio) {
+    const t = working.ilmaisu + arvio;
+    postWorking(Object.assign([], working, { ilmaisu: t }));
+  }
   return (
     <>
       <DropdownButton
@@ -184,16 +213,26 @@ function Toka({ postWorking, working }) {
         variant="warning"
         title="erottelu"
       >
-        <Dropdown.Item href="#/action-1">keittiö</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">olohuone</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">makuhuone</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">eteinen</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">parveke</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ainon huone</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ala-aula</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">kylpyhuone</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">telkkarihuone</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">takapiha</Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Keit")}>keittiö</Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Oloh")}>olohuone</Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Makh")}>
+          makuhuone
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Etei")}>eteinen</Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Parv")}>parveke</Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Ainh")}>
+          ainon huone
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Al-aul")}>
+          ala-aula
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("Kylp")}>
+          kylpyhuone
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("telk")}>
+          telkkarihuone
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => erottelu("takp")}>takapiha</Dropdown.Item>
       </DropdownButton>
       <DropdownButton
         as={ButtonGroup}
@@ -201,10 +240,14 @@ function Toka({ postWorking, working }) {
         variant="success"
         title="ilmaisu"
       >
-        <Dropdown.Item href="#/action-1">kansio</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">laatikko</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ovi</Dropdown.Item>
-        <Dropdown.Item href="#/action-1">ihminen</Dropdown.Item>
+        <Dropdown.Item onClick={() => ilmaisu("kansio")}>kansio</Dropdown.Item>
+        <Dropdown.Item onClick={() => ilmaisu("laatikko")}>
+          laatikko
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => ilmaisu("ovi")}>ovi</Dropdown.Item>
+        <Dropdown.Item onClick={() => ilmaisu("ihminen")}>
+          ihminen
+        </Dropdown.Item>
       </DropdownButton>
       <DropdownButton
         as={ButtonGroup}
