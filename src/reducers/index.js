@@ -19,7 +19,10 @@ export default function pompState(
       ohituksia_sosiaalistamisessa: 0,
       sosiaalistaminen_kesto: 0,
       sosiaalistettavat: [],
-      sosiaalistamisenarvio: []
+      sosiaalistamisenarvio: [],
+      ulkoilulopina: "",
+      tyoskentelylopina: "",
+      sosiaalistamislopina: ""
     }
   },
   action

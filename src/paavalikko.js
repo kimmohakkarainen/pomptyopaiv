@@ -15,7 +15,6 @@ import { fetchWorking, postWorking } from "./actions";
 
 function Paavalikko({ postWorking, working }) {
   const [selected, setSelected] = useState("1");
-  console.log(working);
   return (
     <div>
       <Nav
@@ -167,6 +166,21 @@ function Eka({ postWorking, working }) {
       >
         rauhoittuminen pihassa
       </Button>{" "}
+      <Form>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>muuta</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            value={working.ulkoilulopina}
+            onChange={e =>
+              postWorking(
+                Object.assign([], working, { ulkoilulopina: e.target.value })
+              )
+            }
+          />
+        </Form.Group>
+      </Form>
     </>
   );
 }
@@ -312,6 +326,23 @@ function Toka({ postWorking, working }) {
       >
         älytehtävä
       </Button>{" "}
+      <Form>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>muuta</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            value={working.tyoskentelylopina}
+            onChange={e =>
+              postWorking(
+                Object.assign([], working, {
+                  tyoskentelylopina: e.target.value
+                })
+              )
+            }
+          />
+        </Form.Group>
+      </Form>
     </>
   );
 }
@@ -323,7 +354,7 @@ function Kolmas({ postWorking, working }) {
   }
 
   function sosarvio(arvio) {
-    const t = working.sosarvio + arvio;
+    const t = working.sosiaalistamisenarvio + arvio;
     postWorking(Object.assign([], working, { sosiaalistamisenarvio: t }));
   }
 
@@ -408,6 +439,24 @@ function Kolmas({ postWorking, working }) {
         <Dropdown.Item onClick={() => sosarvio("hyv")}>hyvä</Dropdown.Item>
         <Dropdown.Item onClick={() => sosarvio("maht")}>mahtava</Dropdown.Item>
       </DropdownButton>
+
+      <Form>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>muuta sosiaalistamisesta</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            value={working.sosiaalistamislopina}
+            onChange={e =>
+              postWorking(
+                Object.assign([], working, {
+                  sosiaalistamislopina: e.target.value
+                })
+              )
+            }
+          />
+        </Form.Group>
+      </Form>
     </>
   );
 }
