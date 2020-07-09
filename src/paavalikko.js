@@ -105,7 +105,7 @@ function Eka({ postWorking, working }) {
         <Dropdown.Item onClick={() => metsaLenkki(90)}>1:30</Dropdown.Item>
         <Dropdown.Item onClick={() => metsaLenkki(100)}>1:40</Dropdown.Item>
         <Dropdown.Item onClick={() => metsaLenkki(110)}>1:50</Dropdown.Item>
-        <Dropdown.Item onClick={() => metsaLenkki(120)}>2:00+</Dropdown.Item>
+        <Dropdown.Item onClick={() => metsaLenkki(120)}>2:00</Dropdown.Item>
       </DropdownButton>
       <Button
         variant="warning"
@@ -244,6 +244,10 @@ function Toka({ postWorking, working }) {
 }
 
 function Kolmas({ postWorking, working }) {
+  function kesto(min) {
+    const t = working.sosiaalistaminen_kesto + min;
+    postWorking(Object.assign([], working, { sosiaalistaminen_kesto: t }));
+  }
   return (
     <>
       <Button
@@ -266,19 +270,19 @@ function Kolmas({ postWorking, working }) {
         variant="danger"
         title="kesto"
       >
-        <Dropdown.Item href="#/action-1">0:10</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">0:15</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:20</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:30</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:40</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:50</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">0:60</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:10</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:20</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:30</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:40</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">1:50</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">2:00+</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(10)}>0:10</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(15)}>0:15</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(20)}>0:20</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(30)}>0:30</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(40)}>0:40</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(50)}>0:50</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(60)}>0:60</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(70)}>1:10</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(80)}>1:20</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(90)}>1:30</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(100)}>1:40</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(110)}>1:50</Dropdown.Item>
+        <Dropdown.Item onClick={() => kesto(120)}>2:00</Dropdown.Item>
       </DropdownButton>
 
       <DropdownButton
