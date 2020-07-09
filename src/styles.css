@@ -6,3 +6,20 @@
 .hyv:hover:hover {
   background-color: wheat;
 }
+
+.kal:hover:hover {
+  background-color: red;
+}
+
+.tyhja {
+  background-color: lightcoral;
+}
+td.today {
+  background-color: #30d0c0;
+  padding: 1px;
+}
+
+div.today {
+  background-color: #40e0d0;
+  margin: 9px;
+}

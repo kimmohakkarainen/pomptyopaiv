@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Jumbotron, Badge, Button, Table } from "react-bootstrap";
+import {
+  Jumbotron,
+  Badge,
+  Button,
+  Table,
+  Tooltip,
+  Overlay,
+  OverlayTrigger
+} from "react-bootstrap";
 import Paavalikko from "./paavalikko.js";
 
 function Kalenteri({ calendar }) {
@@ -15,7 +23,7 @@ function Kalenteri({ calendar }) {
   return (
     <>
       {sivu === null && (
-        <Table bordered striped onClick={onClick}>
+        <Table bordered striped>
           <thead>
             <tr>
               <th>Ma</th>
@@ -28,54 +36,39 @@ function Kalenteri({ calendar }) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td style={{ color: "#606060" }}>29</td>
-              <td style={{ color: "#606060" }}>30</td>
-              <td className="hyv" id={1}>
-                1
-              </td>
-              <td className="hyv">2</td>
-              <td className="hyv">3</td>
-              <td className="hyv">4</td>
-              <td className="hyv">5</td>
-            </tr>
-            <tr>
-              <td className="hyv">6</td>
-              <td className="hyv">7</td>
-              <td className="hyv">8</td>
-              <td className="hyv">9</td>
-              <td className="hyv">10</td>
-              <td className="hyv">11</td>
-              <td className="hyv">12</td>
-            </tr>
-            <tr>
-              <td className="hyv">13</td>
-              <td className="hyv">14</td>
-              <td className="hyv">15</td>
-              <td className="hyv">16</td>
-              <td className="hyv">17</td>
-              <td className="hyv">18</td>
-              <td className="hyv">19</td>
-            </tr>
-            <tr>
-              <td className="hyv">20</td>
-              <td className="hyv">21</td>
-              <td className="hyv">22</td>
-              <td className="hyv">23</td>
-              <td className="hyv">24</td>
-              <td className="hyv">25</td>
-              <td className="hyv">26</td>
-            </tr>
-            <tr>
-              <td className="hyv">27</td>
-              <td className="hyv">28</td>
-              <td className="hyv">29</td>
-              <td className="hyv">30</td>
-              <td className="hyv">31</td>
-              <td style={{ color: "#606060" }}>1</td>
-              <td style={{ color: "#606060" }}>2</td>
-            </tr>
-            <tr />
+            {calendar.map(rivi => {
+              return (
+                <tr>
+                  {rivi.map(sarake => {
+                    if (sarake.today) {
+                      return (
+                        <td className="today">
+                          <div className="today"> {sarake.value}</div>
+                        </td>
+                      );
+                    } else if (sarake.text) {
+                      return (
+                        <OverlayTrigger
+                          key={2}
+                          placement="top"
+                          overlay={<Tooltip id={2}>{sarake.text}</Tooltip>}
+                        >
+                          <td> {sarake.value}</td>
+                        </OverlayTrigger>
+                      );
+                    } else if (sarake.empty) {
+                      return <td className="tyhja"> {sarake.value}</td>;
+                    } else {
+                      return (
+                        <td className="kal" key={sarake}>
+                          {sarake.value}
+                        </td>
+                      );
+                    }
+                  })}
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       )}
@@ -86,7 +79,60 @@ function Kalenteri({ calendar }) {
 
 function mapStateToProps(state) {
   return {
-    calendar: []
+    calendar: [
+      [
+        { value: 29, empty: true, text: "höpö" },
+        { value: 30, empty: true, text: "höpö" },
+        { value: 1, empty: true, text: "höpö" },
+        { value: 2, empty: true },
+        { value: 3, empty: true, text: "höpö" },
+        { value: 4, empty: true, text: "höpö" },
+        { value: 5, empty: true, text: "höpö" }
+      ],
+      [
+        { value: 6, empty: true, text: "höpö" },
+        { value: 7, empty: true, text: "höpö" },
+        { value: 8, empty: true, text: "höpö" },
+        { value: 9, today: true, empty: true, text: "höpö" },
+        { value: 10, empty: true, text: "höpö" },
+        { value: 11, empty: true, text: "höpö" },
+        { value: 12, empty: true, text: "höpö" }
+      ],
+      [
+        { value: 13, empty: true, text: "höpö" },
+        { value: 14, empty: true, text: "höpö" },
+        { value: 15, empty: true, text: "höpö" },
+        { value: 16, empty: true, text: "höpö" },
+        { value: 17, empty: true, text: "höpö" },
+        { value: 18, empty: true, text: "höpö" },
+        { value: 19, empty: true, text: "höpö" }
+      ],
+      [
+        { value: 20, empty: true, text: "höpö" },
+        { value: 21, empty: true, text: "höpö" },
+        { value: 22, empty: true, text: "höpö" },
+        { value: 23, empty: true, text: "höpö" },
+        { value: 24, empty: true, text: "höpö" },
+        { value: 25, empty: true, text: "höpö" },
+        { value: 26, empty: true, text: "höpö" }
+      ],
+      [
+        { value: 27, empty: true, text: "höpö" },
+        { value: 28, empty: true, text: "höpö" },
+        { value: 29, empty: true, text: "höpö" },
+        { value: 30, empty: true, text: "höpö" },
+        { value: 31, empty: true, text: "höpö" },
+        { value: 1, empty: true, text: "höpö" },
+        { value: 2, empty: true, text: "höpö" }
+      ]
+    ],
+    calendarold: [
+      [0, 0, 1, 2, 3, 4, 5],
+      [6, 7, 8, 9, 10, 11, 12],
+      [13, 14, 15, 16, 17, 18, 19],
+      [20, 21, 22, 23, 24, 25, 26],
+      [27, 28, 29, 30, 31, 0, 0]
+    ]
   };
 }
 
