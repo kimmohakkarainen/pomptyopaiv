@@ -23,7 +23,7 @@ function Kalenteri({ calendar }) {
   return (
     <>
       {sivu === null && (
-        <Table bordered striped>
+        <Table bordered striped onClick={onClick}>
           <thead>
             <tr>
               <th>Ma</th>
