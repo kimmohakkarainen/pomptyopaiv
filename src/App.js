@@ -9,7 +9,7 @@ import Paavalikko from "./paavalikko.js";
 export default function App() {
   return (
     <div className="App">
-      <Kalenteri />
+      <Paavalikko />
     </div>
   );
 }
