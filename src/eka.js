@@ -10,22 +10,22 @@ import {
 
 export default function Eka({ postWorking, working }) {
   function katuLenkki(min) {
-    const t = working.katulenkki + min;
-    postWorking(Object.assign([], working, { katulenkki: t }));
+    const t = working.Katulenkki + min;
+    postWorking(Object.assign([], working, { Katulenkki: t }));
   }
   function metsaLenkki(min) {
-    const t = working.metsalenkki + min;
-    postWorking(Object.assign([], working, { metsalenkki: t }));
+    const t = working.Metsälenkki + min;
+    postWorking(Object.assign([], working, { Metsälenkki: t }));
   }
 
   function juoruaminen(arvio) {
-    const t = working.juoruaminen + arvio;
-    postWorking(Object.assign([], working, { juoruaminen: t }));
+    const t = working.Juoruaminen + arvio;
+    postWorking(Object.assign([], working, { Juoruaminen: t }));
   }
 
   function lenkinArvio(arvio) {
-    const t = working.lenkinarvio + arvio;
-    postWorking(Object.assign([], working, { lenkinarvio: t }));
+    const t = working.LenkinArvio + arvio;
+    postWorking(Object.assign([], working, { LenkinArvio: t }));
   }
 
   return (
@@ -73,8 +73,8 @@ export default function Eka({ postWorking, working }) {
       <Button
         variant="warning"
         onClick={() => {
-          const t = working.ohitukset_lenkilla + 1;
-          postWorking(Object.assign([], working, { ohitukset_lenkilla: t }));
+          const t = working.OhituksetLenkillä + 1;
+          postWorking(Object.assign([], working, { OhituksetLenkillä: t }));
         }}
       >
         ohitukset lenkillä
@@ -114,8 +114,8 @@ export default function Eka({ postWorking, working }) {
       <Button
         variant="secondary"
         onClick={() => {
-          const t = working.rauhoittuminen + 1;
-          postWorking(Object.assign([], working, { rauhoittuminen: t }));
+          const t = working.Rauhoittuminen + 1;
+          postWorking(Object.assign([], working, { Rauhoittuminen: t }));
         }}
       >
         rauhoittuminen pihassa
@@ -126,10 +126,10 @@ export default function Eka({ postWorking, working }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={working.ulkoilulopina}
+            value={working.UlkoiluLöpinä}
             onChange={e =>
               postWorking(
-                Object.assign([], working, { ulkoilulopina: e.target.value })
+                Object.assign([], working, { UlkoiluLöpinä: e.target.value })
               )
             }
           />

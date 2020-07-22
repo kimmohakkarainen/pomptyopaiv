@@ -11,28 +11,28 @@ import {
 
 export default function Toka({ postWorking, working }) {
   function erottelu(arvio) {
-    const t = working.erottelu + arvio;
-    postWorking(Object.assign([], working, { erottelu: t }));
+    const t = working.Erottelu + arvio;
+    postWorking(Object.assign([], working, { Erottelu: t }));
   }
 
   function ilmaisu(arvio) {
-    const t = working.ilmaisu + arvio;
-    postWorking(Object.assign([], working, { ilmaisu: t }));
+    const t = working.Ilmaisu + arvio;
+    postWorking(Object.assign([], working, { Ilmaisu: t }));
   }
 
   function tekija(arvio) {
-    const t = working.tekija + arvio;
-    postWorking(Object.assign([], working, { tekija: t }));
+    const t = working.Tekijä + arvio;
+    postWorking(Object.assign([], working, { Tekijä: t }));
   }
 
   function kontakti(arvio) {
-    const t = working.kontakti + arvio;
-    postWorking(Object.assign([], working, { kontakti: t }));
+    const t = working.Kontakti + arvio;
+    postWorking(Object.assign([], working, { Kontakti: t }));
   }
 
   function arvio(arvio) {
-    const t = working.arvio + arvio;
-    postWorking(Object.assign([], working, { arvio: t }));
+    const t = working.Arvio + arvio;
+    postWorking(Object.assign([], working, { Arvio: t }));
   }
 
   return (
@@ -45,20 +45,20 @@ export default function Toka({ postWorking, working }) {
       >
         <Dropdown.Item
           onClick={() => {
-            const t = working.namietsinta_ulkona + 1;
-            postWorking(Object.assign([], working, { namietsinta_ulkona: t }));
+            const t = working.NamietsintäSisällä + 1;
+            postWorking(Object.assign([], working, { NamietsintäSisällä: t }));
           }}
         >
-          ulkona
+          sisällä
         </Dropdown.Item>
 
         <Dropdown.Item
           onClick={() => {
-            const t = working.namietsinta_sisalla + 1;
-            postWorking(Object.assign([], working, { namietsinta_sisalla: t }));
+            const t = working.NamietsintäUlkona + 1;
+            postWorking(Object.assign([], working, { NamietsintäUlkona: t }));
           }}
         >
-          sisällä
+          ulkona
         </Dropdown.Item>
       </DropdownButton>
       <DropdownButton
@@ -144,8 +144,8 @@ export default function Toka({ postWorking, working }) {
       <Button
         variant="info"
         onClick={() => {
-          const t = working.alytehtava + 1;
-          postWorking(Object.assign([], working, { alytehtava: t }));
+          const t = working.Älytehtävä + 1;
+          postWorking(Object.assign([], working, { Älytehtävä: t }));
         }}
       >
         älytehtävä
@@ -156,11 +156,11 @@ export default function Toka({ postWorking, working }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={working.tyoskentelylopina}
+            value={working.TyöskentelyLöpinä}
             onChange={e =>
               postWorking(
                 Object.assign([], working, {
-                  tyoskentelylopina: e.target.value
+                  TyöskentelyLöpinä: e.target.value
                 })
               )
             }
