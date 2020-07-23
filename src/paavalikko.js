@@ -14,7 +14,7 @@ import Ulkoilu from "./ulkoilu";
 import Toka from "./toka";
 import Kolmas from "./kolmas";
 
-function Paavalikko({ postWorking, working }) {
+function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
   const [selected, setSelected] = useState("1");
   return (
     <div>
@@ -59,7 +59,9 @@ function Paavalikko({ postWorking, working }) {
 
 function mapStateToProps(state) {
   return {
-    working: state.working
+    working: state.working,
+    metsalenkit: state.metsalenkit,
+    katulenkit: state.katulenkit
   };
 }
 

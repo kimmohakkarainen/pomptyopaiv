@@ -23,7 +23,9 @@ export default function pompState(
       UlkoiluLopina: "",
       TyoskentelyLopina: "",
       SosiaalistamisLopina: ""
-    }
+    },
+    metsalenkit: [],
+    katulenkit: []
   },
   action
 ) {
