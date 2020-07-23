@@ -42,18 +42,6 @@ function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
       {selected === "3" && (
         <Kolmas working={working} postWorking={postWorking} />
       )}
-      <table>
-        <tbody>
-          {Object.entries(working).map(([key, value]) => {
-            return (
-              <tr key={key}>
-                <td>{key}</td>
-                <td>{value}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
     </div>
   );
 }

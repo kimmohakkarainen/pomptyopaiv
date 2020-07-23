@@ -25,8 +25,6 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
     fetchMerkinnat(0);
   }, [fetchMerkinnat]);
 
-  const nextId = merkinnat.length + 1;
-
   function katuLenkki() {
     postMerkinta({ type: "katulenkki" });
   }
@@ -93,7 +91,7 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
                 <Card.Body>
                   {(merkinta.type === "katulenkki" ||
                     merkinta.type === "metsalenkki") && (
-                    <Lenkki katulenkki={merkinta} />
+                    <Lenkki merkinta={merkinta} />
                   )}
                   {merkinta.type === "alytehtava" && (
                     <Alytehtava merkinta={merkinta} />
