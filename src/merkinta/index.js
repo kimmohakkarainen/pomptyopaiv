@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -10,7 +10,7 @@ import {
   Accordion,
   Card
 } from "react-bootstrap";
-import { postMerkinta } from "../actions";
+import { fetchMerkinnat, postMerkinta } from "../actions";
 
 import Lenkki from "./lenkki";
 import Alytehtava from "./alytehtava";
@@ -20,39 +20,43 @@ import Namietsinta from "./namietsinta.js";
 import Ilmaisu from "./ilmaisu.js";
 import Sosiaalistaminen from "./sosiaalistaminen.js";
 
-function Merkinta({ postMerkinta, merkinnat }) {
+function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
+  useEffect(() => {
+    fetchMerkinnat(0);
+  }, [fetchMerkinnat]);
+
   const nextId = merkinnat.length + 1;
 
   function katuLenkki() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "katulenkki" }]));
+    postMerkinta({ type: "katulenkki" });
   }
 
   function metsaLenkki() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "metsalenkki" }]));
+    postMerkinta({ type: "metsalenkki" });
   }
 
   function erottelu() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "erottelu" }]));
+    postMerkinta({ type: "erottelu" });
   }
 
   function ilmaisu() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "ilmaisu" }]));
+    postMerkinta({ type: "ilmaisu" });
   }
 
   function alytehtava() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "alytehtava" }]));
+    postMerkinta({ type: "alytehtava" });
   }
 
   function kontakti() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "kontakti" }]));
+    postMerkinta({ type: "kontakti" });
   }
 
   function namietsinta() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "namietsinta" }]));
+    postMerkinta({ type: "namietsinta" });
   }
 
   function sosiaalistaminen() {
-    postMerkinta(merkinnat.concat([{ id: nextId, type: "sosiaalistaminen" }]));
+    postMerkinta({ type: "sosiaalistaminen" });
   }
 
   return (
@@ -75,7 +79,7 @@ function Merkinta({ postMerkinta, merkinnat }) {
         {merkinnat.map(merkinta => {
           const eventkey = merkinta.id;
           return (
-            <Card>
+            <Card key={eventkey}>
               <Card.Header>
                 <Accordion.Toggle
                   as={Button}
@@ -130,7 +134,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postMerkinta: params => dispatch(postMerkinta(params))
+    postMerkinta: params => dispatch(postMerkinta(params)),
+    fetchMerkinnat: params => dispatch(fetchMerkinnat(params))
   };
 };
 
