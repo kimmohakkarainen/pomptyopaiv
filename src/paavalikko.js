@@ -10,7 +10,7 @@ import {
 } from "react-bootstrap";
 
 import { postWorking } from "./actions";
-import Eka from "./eka";
+import Ulkoilu from "./ulkoilu";
 import Toka from "./toka";
 import Kolmas from "./kolmas";
 
@@ -34,7 +34,9 @@ function Paavalikko({ postWorking, working }) {
           <Nav.Link eventKey="3">sosiaalistaminen</Nav.Link>
         </Nav.Item>
       </Nav>
-      {selected === "1" && <Eka working={working} postWorking={postWorking} />}
+      {selected === "1" && (
+        <Ulkoilu working={working} postWorking={postWorking} />
+      )}
       {selected === "2" && <Toka working={working} postWorking={postWorking} />}
       {selected === "3" && (
         <Kolmas working={working} postWorking={postWorking} />

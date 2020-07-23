@@ -21,8 +21,8 @@ export default function Toka({ postWorking, working }) {
   }
 
   function tekija(arvio) {
-    const t = working.Tekijä + arvio;
-    postWorking(Object.assign([], working, { Tekijä: t }));
+    const t = working.Tekija + arvio;
+    postWorking(Object.assign([], working, { Tekija: t }));
   }
 
   function kontakti(arvio) {
@@ -45,8 +45,8 @@ export default function Toka({ postWorking, working }) {
       >
         <Dropdown.Item
           onClick={() => {
-            const t = working.NamietsintäSisällä + 1;
-            postWorking(Object.assign([], working, { NamietsintäSisällä: t }));
+            const t = working.NamietsintaSisalla + 1;
+            postWorking(Object.assign([], working, { NamietsintaSisalla: t }));
           }}
         >
           sisällä
@@ -54,8 +54,8 @@ export default function Toka({ postWorking, working }) {
 
         <Dropdown.Item
           onClick={() => {
-            const t = working.NamietsintäUlkona + 1;
-            postWorking(Object.assign([], working, { NamietsintäUlkona: t }));
+            const t = working.NamietsintaUlkona + 1;
+            postWorking(Object.assign([], working, { NamietsintaUlkona: t }));
           }}
         >
           ulkona
@@ -70,7 +70,7 @@ export default function Toka({ postWorking, working }) {
         <Dropdown.Item onClick={() => erottelu("Keit")}>keittiö</Dropdown.Item>
         <Dropdown.Item onClick={() => erottelu("Oloh")}>olohuone</Dropdown.Item>
         <Dropdown.Item onClick={() => erottelu("Makh")}>
-          makuhuone
+          makuuhuone
         </Dropdown.Item>
         <Dropdown.Item onClick={() => erottelu("Etei")}>eteinen</Dropdown.Item>
         <Dropdown.Item onClick={() => erottelu("Parv")}>parveke</Dropdown.Item>
@@ -144,8 +144,8 @@ export default function Toka({ postWorking, working }) {
       <Button
         variant="info"
         onClick={() => {
-          const t = working.Älytehtävä + 1;
-          postWorking(Object.assign([], working, { Älytehtävä: t }));
+          const t = working.Alytehtava + 1;
+          postWorking(Object.assign([], working, { Alytehtava: t }));
         }}
       >
         älytehtävä
@@ -156,11 +156,11 @@ export default function Toka({ postWorking, working }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={working.TyöskentelyLöpinä}
+            value={working.TyoskentelyLopina}
             onChange={e =>
               postWorking(
                 Object.assign([], working, {
-                  TyöskentelyLöpinä: e.target.value
+                  TyoskentelyLopina: e.target.value
                 })
               )
             }

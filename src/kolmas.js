@@ -11,18 +11,18 @@ import {
 
 export default function Kolmas({ postWorking, working }) {
   function kesto(min) {
-    const t = working.sosiaalistaminen_kesto + min;
-    postWorking(Object.assign([], working, { sosiaalistaminen_kesto: t }));
+    const t = working.SosiaalistamisenKesto + min;
+    postWorking(Object.assign([], working, { SosiaalistamisenKesto: t }));
   }
 
   function sosarvio(arvio) {
-    const t = working.sosiaalistamisenarvio + arvio;
-    postWorking(Object.assign([], working, { sosiaalistamisenarvio: t }));
+    const t = working.SosiaalistamisenArvio + arvio;
+    postWorking(Object.assign([], working, { SosiaalistamisenArvio: t }));
   }
 
   function sos(arvio) {
-    const t = working.sosiaalistettavat + arvio;
-    postWorking(Object.assign([], working, { sosiaalistettavat: t }));
+    const t = working.Sosiaalistettavat + arvio;
+    postWorking(Object.assign([], working, { Sosiaalistettavat: t }));
   }
 
   return (
@@ -30,10 +30,10 @@ export default function Kolmas({ postWorking, working }) {
       <Button
         variant="success"
         onClick={() => {
-          const t = working.ohituksia_sosiaalistamisessa + 1;
+          const t = working.OhituksiaSosiaalistamisessa + 1;
           postWorking(
             Object.assign([], working, {
-              ohituksia_sosiaalistamisessa: t
+              OhituksiaSosiaalistamisessa: t
             })
           );
         }}
@@ -108,11 +108,11 @@ export default function Kolmas({ postWorking, working }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={working.sosiaalistamislopina}
+            value={working.SosiaalistamisLopina}
             onChange={e =>
               postWorking(
                 Object.assign([], working, {
-                  sosiaalistamislopina: e.target.value
+                  SosiaalistamisLopina: e.target.value
                 })
               )
             }
