@@ -15,6 +15,10 @@ import { postMerkinta } from "../actions";
 import Lenkki from "./lenkki";
 import Alytehtava from "./alytehtava";
 import Erottelu from "./erottelu";
+import Kontaktityoskentely from "./kontaktityoskentely";
+import Namietsinta from "./namietsinta.js";
+import Ilmaisu from "./ilmaisu.js";
+import Sosiaalistaminen from "./sosiaalistaminen.js";
 
 function Merkinta({ postMerkinta, merkinnat }) {
   const nextId = merkinnat.length + 1;
@@ -92,6 +96,21 @@ function Merkinta({ postMerkinta, merkinnat }) {
                   )}
                   {merkinta.type === "erottelu" && (
                     <Erottelu merkinta={merkinta} />
+                  )}
+
+                  {merkinta.type === "kontakti" && (
+                    <Kontaktityoskentely merkinta={merkinta} />
+                  )}
+
+                  {merkinta.type === "namietsinta" && (
+                    <Namietsinta merkinta={merkinta} />
+                  )}
+
+                  {merkinta.type === "ilmaisu" && (
+                    <Ilmaisu merkinta={merkinta} />
+                  )}
+                  {merkinta.type === "sosiaalistaminen" && (
+                    <Sosiaalistaminen merkinta={merkinta} />
                   )}
                 </Card.Body>
               </Accordion.Collapse>
