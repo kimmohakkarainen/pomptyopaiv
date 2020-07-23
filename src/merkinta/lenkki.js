@@ -10,42 +10,42 @@ import {
   Card,
   Form
 } from "react-bootstrap";
-import { postKatulenkki } from "../actions";
+import { postMerkinta } from "../actions";
 
-function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
+function Lenkki({ katulenkki, katulenkit, postMerkinta }) {
   function kesto(e) {
     const newvalue = Object.assign({}, katulenkki, { kesto: e.target.value });
-    postKatulenkki(newvalue);
+    postMerkinta(newvalue);
   }
   function juoruaminen(e) {
     const newvalue = Object.assign({}, katulenkki, {
       Juoruaminen: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta([newvalue]);
   }
   function UlkoiluLopina(e) {
     const newvalue = Object.assign({}, katulenkki, {
       UlkoiluLopina: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta([newvalue]);
   }
   function OhituksetLenkilla(e) {
     const newvalue = Object.assign({}, katulenkki, {
       OhituksetLenkilla: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta([newvalue]);
   }
   function Rauhoittuminen(e) {
     const newvalue = Object.assign({}, katulenkki, {
       Rauhoittuminen: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta([newvalue]);
   }
   function Arvio(e) {
     const newvalue = Object.assign({}, katulenkki, {
       Arvio: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta([newvalue]);
   }
 
   return (
@@ -156,11 +156,11 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postKatulenkki: params => dispatch(postKatulenkki(params))
+    postMerkinta: params => dispatch(postMerkinta(params))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Katulenkki);
+)(Lenkki);

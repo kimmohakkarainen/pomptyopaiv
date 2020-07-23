@@ -11,6 +11,7 @@ import {
 
 import { postWorking } from "./actions";
 import Ulkoilu from "./ulkoilu";
+import Merkinta from "./merkinta";
 import Toka from "./toka";
 import Kolmas from "./kolmas";
 
@@ -35,7 +36,7 @@ function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
         </Nav.Item>
       </Nav>
       {selected === "1" && (
-        <Ulkoilu working={working} postWorking={postWorking} />
+        <Merkinta working={working} postWorking={postWorking} />
       )}
       {selected === "2" && <Toka working={working} postWorking={postWorking} />}
       {selected === "3" && (

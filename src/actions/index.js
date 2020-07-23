@@ -82,3 +82,18 @@ export function postMetsalenkkiSucceeded(data) {
     }
   };
 }
+
+export function postMerkinta(params) {
+  return dispatch => {
+    dispatch(postMerkintaSucceeded(params));
+  };
+}
+
+export function postMerkintaSucceeded(data) {
+  return {
+    type: "FETCH_MERKINNAT_SUCCEEDED",
+    payload: {
+      merkinnat: data
+    }
+  };
+}
