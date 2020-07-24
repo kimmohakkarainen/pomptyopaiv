@@ -11,73 +11,96 @@ import {
 } from "react-bootstrap";
 import Paavalikko from "./paavalikko.js";
 
-function Kalenteri({ calendar }) {
-  const [sivu, setSivu] = useState(null);
+function Kalenteri({ calendar, onSelect }) {
   function onClick(event) {
     console.log(event.target.id);
-    setSivu(event.target.id);
+    onSelect(event.target.id);
   }
 
   console.log(calendar);
-  console.log(sivu);
+
   return (
     <>
-      {sivu === null && (
-        <Table bordered striped onClick={onClick}>
-          <thead>
-            <tr>
-              <th>Ma</th>
-              <th>Ti</th>
-              <th>Ke</th>
-              <th>To</th>
-              <th>Pe</th>
-              <th>La</th>
-              <th>Su</th>
-            </tr>
-          </thead>
-          <tbody>
-            {calendar.map(rivi => {
-              return (
-                <tr>
-                  {rivi.map(sarake => {
-                    if (sarake.today) {
-                      return (
-                        <td className="today">
-                          <div className="today"> {sarake.value}</div>
-                        </td>
-                      );
-                    } else if (sarake.text) {
-                      return (
-                        <OverlayTrigger
-                          key={2}
-                          placement="top"
-                          overlay={<Tooltip id={2}>{sarake.text}</Tooltip>}
+      <Table bordered striped onClick={onClick}>
+        <thead>
+          <tr>
+            <th>Ma</th>
+            <th>Ti</th>
+            <th>Ke</th>
+            <th>To</th>
+            <th>Pe</th>
+            <th>La</th>
+            <th>Su</th>
+          </tr>
+        </thead>
+        <tbody>
+          {calendar.map(rivi => {
+            return (
+              <tr key={rivi.week}>
+                {rivi.days.map(sarake => {
+                  if (sarake.today) {
+                    return (
+                      <td id={sarake.text} key={sarake.text} className="today">
+                        <div
+                          id={sarake.text}
+                          key={sarake.text}
+                          className="today"
                         >
-                          <td> {sarake.value}</td>
-                        </OverlayTrigger>
-                      );
-                    } else if (sarake.empty) {
-                      return <td className="tyhja"> {sarake.value}</td>;
-                    } else {
-                      return (
-                        <td className="kal" key={sarake}>
+                          {" "}
+                          {sarake.value}
+                        </div>
+                      </td>
+                    );
+                  } else if (sarake.text) {
+                    return (
+                      <OverlayTrigger
+                        key={sarake.text}
+                        placement="top"
+                        overlay={
+                          <Tooltip id={sarake.text}>{sarake.text}</Tooltip>
+                        }
+                      >
+                        <td id={sarake.text} key={sarake.text}>
+                          {" "}
                           {sarake.value}
                         </td>
-                      );
-                    }
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      )}
-      {sivu != null && <Paavalikko />}
+                      </OverlayTrigger>
+                    );
+                  } else if (sarake.empty) {
+                    return (
+                      <td id={sarake.text} key={sarake.text} className="tyhja">
+                        {" "}
+                        {sarake.value}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td
+                        id={sarake.text}
+                        key={sarake.text}
+                        className="kal"
+                        key={sarake.value}
+                      >
+                        {sarake.value}
+                      </td>
+                    );
+                  }
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </Table>
     </>
   );
 }
 
 function mapStateToProps(state) {
+  return {
+    calendar: state.calendar
+  };
+
+  /*
   return {
     calendar: [
       [
@@ -126,14 +149,8 @@ function mapStateToProps(state) {
         { value: 2, empty: true, text: "höpö" }
       ]
     ],
-    calendarold: [
-      [0, 0, 1, 2, 3, 4, 5],
-      [6, 7, 8, 9, 10, 11, 12],
-      [13, 14, 15, 16, 17, 18, 19],
-      [20, 21, 22, 23, 24, 25, 26],
-      [27, 28, 29, 30, 31, 0, 0]
-    ]
   };
+  */
 }
 
 const mapDispatchToProps = dispatch => {

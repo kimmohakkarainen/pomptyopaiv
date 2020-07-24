@@ -1,55 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  Button,
-  Nav,
-  DropdownButton,
-  ButtonGroup,
-  Dropdown,
-  Form,
-  Navbar,
-  Container
-} from "react-bootstrap";
+import { Nav, Navbar, Container } from "react-bootstrap";
 
-import { postWorking } from "./actions";
+import { fetchCalendar } from "./actions";
+
 import Merkinta from "./merkinta";
 import Yhteenveto from "./yhteenveto";
+import Kalenteri from "./kalenteri.js";
 
-function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
+function Paavalikko({ fetchCalendar, calendar }) {
   const [selected, setSelected] = useState("1");
+  const [date, setDate] = useState(null);
+
+  useEffect(() => {
+    fetchCalendar();
+  }, [fetchCalendar]);
+
+  function onSelectDate(id) {
+    setDate(id);
+  }
+
   return (
     <div>
-      <Navbar bg="dark" variant="dark" className="tyo">
-        <Navbar.Brand className="pop" href="#home">
-          <img alt="" src="/pop.gif" width="30" height="30" className="tyo" />{" "}
+      <Navbar
+        bg="dark"
+        variant="dark"
+        className="tyo"
+        onClick={() => setDate(null)}
+      >
+        <Navbar.Brand className="pop">
+          <img alt="" src="/pop.png" width="30" height="30" className="tyo" />{" "}
           pöptyöp
         </Navbar.Brand>
-      </Navbar>{" "}
-      <Container fluid className="yla">
-        <Nav
-          fill
-          defaultActiveKey="1"
-          onSelect={eventKey => setSelected(eventKey)}
-        >
-          <Nav.Item>
-            <Nav.Link className="tab" eventKey="1">
-              Kirjaukset
-            </Nav.Link>
-          </Nav.Item>
+      </Navbar>
+      {date === null && (
+        <Kalenteri calendar={calendar} onSelect={onSelectDate} />
+      )}
+      {date != null && (
+        <div>
+          <Container fluid className="yla">
+            <Nav
+              fill
+              defaultActiveKey="1"
+              onSelect={eventKey => setSelected(eventKey)}
+            >
+              <Nav.Item>
+                <Nav.Link className="tab" eventKey="1">
+                  Kirjaukset
+                </Nav.Link>
+              </Nav.Item>
 
-          <Nav.Item>
-            <Nav.Link className="tab" eventKey="2">
-              Yhteenveto
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </Container>
-      {selected === "1" && (
-        <Merkinta working={working} postWorking={postWorking} />
-      )}
-      {selected === "2" && (
-        <Yhteenveto working={working} postWorking={postWorking} />
-      )}
+              <Nav.Item>
+                <Nav.Link className="tab" eventKey="2">
+                  Yhteenveto
+                </Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Container>
+          {selected === "1" && <Merkinta date={date} />}
+          {selected === "2" && <Yhteenveto date={date} />}
+        </div>
       )}
     </div>
   );
@@ -57,15 +67,13 @@ function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
 
 function mapStateToProps(state) {
   return {
-    working: state.working,
-    metsalenkit: state.metsalenkit,
-    katulenkit: state.katulenkit
+    calendar: state.calendar
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    postWorking: params => dispatch(postWorking(params))
+    fetchCalendar: params => dispatch(fetchCalendar())
   };
 };
 
