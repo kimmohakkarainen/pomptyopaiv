@@ -31,6 +31,18 @@ function Erottelu({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+  function Tekija(e) {
+    const newvalue = Object.assign({}, merkinta, {
+      Tekija: e.target.value
+    });
+    postMerkinta(newvalue);
+  }
+  function ErotteluLopina(e) {
+    const newvalue = Object.assign({}, merkinta, {
+      ErotteluLopina: e.target.value
+    });
+    postMerkinta(newvalue);
+  }
 
   return (
     <div>
@@ -58,6 +70,91 @@ function Erottelu({ merkinta, postMerkinta }) {
       </Form>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>tekijä</Form.Label>
+          <Form.Control as="select" value={merkinta.Tekija} onChange={Tekija}>
+            <option default hidden>
+              -
+            </option>
+            <option>Terhi</option>
+            <option>Aino</option>
+            <option>Kimmo</option>
+            <option>Henri</option>
+            <option>joku muu</option>
+          </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>hypohaju</Form.Label>
+          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+            <option default hidden>
+              -
+            </option>
+            <option>h1</option>
+            <option>h2</option>
+            <option>h3</option>
+            <option>h4</option>><option>h5</option>
+            <option>h6</option>
+            <option>h7</option>
+          </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>toinen haju</Form.Label>
+          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+            <option default hidden>
+              -
+            </option>
+            <option>n1</option>
+            <option>n2</option>
+            <option>n3</option>
+            <option>n4</option>
+            <option>n5</option>
+            <option>n6</option>
+            <option>n7</option>
+            <option>T</option>
+          </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>kolmas haju</Form.Label>
+          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+            <option default hidden>
+              -
+            </option>
+            <option>n1</option>
+            <option>n2</option>
+            <option>n3</option>
+            <option>n4</option>
+            <option>n5</option>
+            <option>n6</option>
+            <option>n7</option>
+            <option>T</option>
+          </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>neljäs haju</Form.Label>
+          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+            <option default hidden>
+              -
+            </option>
+            <option>n1</option>
+            <option>n2</option>
+            <option>n3</option>
+            <option>n4</option>
+            <option>n5</option>
+            <option>n6</option>
+            <option>n7</option>
+            <option>T</option>
+          </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>arvio</Form.Label>
           <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
             <option default hidden>
@@ -72,18 +169,14 @@ function Erottelu({ merkinta, postMerkinta }) {
         </Form.Group>
       </Form>
       <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>hypohajut</Form.Label>
-          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
-            <option default hidden>
-              -
-            </option>
-            <option>hypo tyhj</option>
-            <option>emt</option>
-            <option>häh</option>
-            <option>ei tyhjä</option>
-            <option>mahtava</option>
-          </Form.Control>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>muuta</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            value={merkinta.ErotteluLopina}
+            onChange={ErotteluLopina}
+          />
         </Form.Group>
       </Form>
     </div>

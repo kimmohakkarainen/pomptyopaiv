@@ -52,6 +52,22 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
     <div>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
+          <Form.Label>rauhoittuminen pihassa</Form.Label>
+          <Form.Control
+            as="select"
+            value={merkinta.Rauhoittuminen}
+            onChange={Rauhoittuminen}
+          >
+            <option default hidden>
+              -
+            </option>
+            <option>kyllä</option>
+            <option>ei</option>
+          </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>kesto</Form.Label>
           <Form.Control as="select" value={merkinta.kesto} onChange={kesto}>
             <option default hidden>
@@ -119,22 +135,6 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
 
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>rauhoittuminen pihassa</Form.Label>
-          <Form.Control
-            as="select"
-            value={merkinta.Rauhoittuminen}
-            onChange={Rauhoittuminen}
-          >
-            <option default hidden>
-              -
-            </option>
-            <option>kyllä</option>
-            <option>ei</option>
-          </Form.Control>
-        </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>arvio</Form.Label>
           <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
             <option default hidden>
@@ -150,7 +150,7 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
       </Form>
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>UlkoiluLopinat</Form.Label>
+          <Form.Label>muuta</Form.Label>
           <Form.Control
             as="textarea"
             rows="3"

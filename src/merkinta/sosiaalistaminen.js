@@ -100,7 +100,7 @@ function Sosiaalistaminen({ merkinta, postMerkinta }) {
 
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>sosiaalistamislöpinät</Form.Label>
+          <Form.Label>muuta</Form.Label>
           <Form.Control
             as="textarea"
             rows="3"

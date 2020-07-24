@@ -73,14 +73,6 @@ div.yla.container-fluid {
 }
 
 .vasen {
-  padding: 0.5em;
-  background-color: var(--dark);
-  margin: 1em;
-  box-shadow: 2px 2px 2px 1px black;
-}
-
-.oikea {
-  padding: 0.5em;
   background-color: var(--dark);
   margin: 1em;
   box-shadow: 2px 2px 2px 1px black;
@@ -93,4 +85,10 @@ div.card-header {
 .acco {
   background-color: #202020;
   color: white;
+}
+.tab:hover {
+  color: white;
+}
+.yhtvet {
+  padding: 2em;
 }

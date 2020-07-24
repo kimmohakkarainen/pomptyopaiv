@@ -27,7 +27,7 @@ function Yhteenveto({ fetchSummary, summary }) {
     const ulkoilukerrat = summary[0][1];
   }
   return (
-    <div>
+    <div className="yhtvet">
       <Table striped bordered variant="light" className="taulu">
         {summary.length > 0 && (
           <tbody>
@@ -38,10 +38,6 @@ function Yhteenveto({ fetchSummary, summary }) {
             <tr>
               <td>Ulkoilujen kesto</td>
               <td>{summary[1][1]}</td>
-            </tr>
-            <tr>
-              <td>Rauhoittumisia</td>
-              <td>{summary[2][1]}</td>
             </tr>
             <tr>
               <td>Älytehtäviä</td>

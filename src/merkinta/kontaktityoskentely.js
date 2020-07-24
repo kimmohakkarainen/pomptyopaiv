@@ -25,12 +25,18 @@ function Kontaktityoskentely({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+  function KontaktiLopina(e) {
+    const newvalue = Object.assign({}, merkinta, {
+      KontaktiLopina: e.target.value
+    });
+    postMerkinta(newvalue);
+  }
 
   return (
     <div>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>kontakti työskentely</Form.Label>
+          <Form.Label>kontaktityöskentely</Form.Label>
           <Form.Control
             as="select"
             value={merkinta.Kontakti}
@@ -60,6 +66,17 @@ function Kontaktityoskentely({ merkinta, postMerkinta }) {
             <option>hyvä</option>
             <option>mahtava</option>
           </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>muuta</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            value={merkinta.KontaktiLopina}
+            onChange={KontaktiLopina}
+          />
         </Form.Group>
       </Form>
     </div>

@@ -25,6 +25,12 @@ function Ilmaisu({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+  function IlmaisuLopina(e) {
+    const newvalue = Object.assign({}, merkinta, {
+      IlmaisuLopina: e.target.value
+    });
+    postMerkinta(newvalue);
+  }
   console.log(merkinta);
   return (
     <div>
@@ -35,7 +41,6 @@ function Ilmaisu({ merkinta, postMerkinta }) {
             <option default hidden>
               -
             </option>
-            <option>kansio</option>
             <option>laatikko</option>
             <option>ovi</option>
             <option>ihminen</option>
@@ -53,6 +58,17 @@ function Ilmaisu({ merkinta, postMerkinta }) {
             <option>hyvä</option>
             <option>mahtava</option>
           </Form.Control>
+        </Form.Group>
+      </Form>
+      <Form>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Label>muuta</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            value={merkinta.IlmaisuLopina}
+            onChange={IlmaisuLopina}
+          />
         </Form.Group>
       </Form>
     </div>
