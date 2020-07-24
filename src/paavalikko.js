@@ -12,10 +12,7 @@ import {
 } from "react-bootstrap";
 
 import { postWorking } from "./actions";
-import Ulkoilu from "./ulkoilu";
 import Merkinta from "./merkinta";
-import Toka from "./toka";
-import Kolmas from "./kolmas";
 import Yhteenveto from "./yhteenveto";
 
 function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
@@ -24,7 +21,7 @@ function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
     <div>
       <Navbar bg="dark" variant="dark" className="tyo">
         <Navbar.Brand className="pop" href="#home">
-          <img alt="" src="pop.png" width="30" height="30" className="tyo" />{" "}
+          <img alt="" src="/pop.gif" width="30" height="30" className="tyo" />{" "}
           pöptyöp
         </Navbar.Brand>
       </Navbar>{" "}
