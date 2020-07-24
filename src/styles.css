@@ -33,13 +33,7 @@ div.today {
 div.yla.container-fluid {
   background-color: white;
 }
-.Kirjaukset {
-  background-color: var(--dark);
-  color: white;
-
-  box-shadow: 2px 2px 2px black;
-}
-.yhteenveto {
+.tab {
   background-color: var(--dark);
   color: white;
 
@@ -76,4 +70,27 @@ div.yla.container-fluid {
 .taulu {
   color: white;
   background-color: var(--dark);
+}
+
+.vasen {
+  padding: 0.5em;
+  background-color: var(--dark);
+  margin: 1em;
+  box-shadow: 2px 2px 2px 1px black;
+}
+
+.oikea {
+  padding: 0.5em;
+  background-color: var(--dark);
+  margin: 1em;
+  box-shadow: 2px 2px 2px 1px black;
+}
+
+div.card-header {
+  background-color: var(--dark);
+}
+
+.acco {
+  background-color: #202020;
+  color: white;
 }

@@ -59,20 +59,38 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
 
   return (
     <>
-      <Button onClick={katuLenkki}>lisää katulenkki</Button>
-      <Button onClick={metsaLenkki}>lisää metsälenkki</Button>
-      <Button onClick={erottelu}>lisää erottelu</Button>
+      <ButtonGroup vertical className="vasen">
+        <Button variant="dark" onClick={katuLenkki}>
+          lisää katulenkki
+        </Button>
+        <Button variant="dark" onClick={metsaLenkki}>
+          lisää metsälenkki
+        </Button>
+        <Button variant="dark" onClick={erottelu}>
+          lisää erottelu
+        </Button>
 
-      <Button onClick={ilmaisu}>lisää ilmaisu</Button>
+        <Button variant="dark" onClick={ilmaisu}>
+          lisää ilmaisu
+        </Button>
+      </ButtonGroup>
+      <ButtonGroup vertical className="oikea">
+        <Button variant="dark" onClick={alytehtava}>
+          lisää älytehtävä
+        </Button>
 
-      <Button onClick={alytehtava}>lisää älytehtävä</Button>
+        <Button variant="dark" onClick={kontakti}>
+          lisää kontaktityöskentely
+        </Button>
 
-      <Button onClick={kontakti}>lisää kontaktityöskentely</Button>
+        <Button variant="dark" onClick={namietsinta}>
+          lisää naminetsintä
+        </Button>
 
-      <Button onClick={namietsinta}>lisää naminetsintä</Button>
-
-      <Button onClick={sosiaalistaminen}>lisää sosiaalistaminen</Button>
-
+        <Button variant="dark" onClick={sosiaalistaminen}>
+          lisää sosiaalistaminen
+        </Button>
+      </ButtonGroup>
       <Accordion defaultActiveKey="0">
         {merkinnat.map(merkinta => {
           const eventkey = merkinta.id;
@@ -80,7 +98,7 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
             <Card key={eventkey}>
               <Card.Header>
                 <Accordion.Toggle
-                  as={Button}
+                  as={Card.Header}
                   variant="link"
                   eventKey={eventkey}
                 >
@@ -88,7 +106,7 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={eventkey}>
-                <Card.Body>
+                <Card.Body className="acco">
                   {(merkinta.type === "katulenkki" ||
                     merkinta.type === "metsalenkki") && (
                     <Lenkki merkinta={merkinta} />

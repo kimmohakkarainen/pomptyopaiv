@@ -35,13 +35,13 @@ function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
           onSelect={eventKey => setSelected(eventKey)}
         >
           <Nav.Item>
-            <Nav.Link className="Kirjaukset" eventKey="1">
+            <Nav.Link className="tab" eventKey="1">
               Kirjaukset
             </Nav.Link>
           </Nav.Item>
 
           <Nav.Item>
-            <Nav.Link className="yhteenveto" eventKey="2">
+            <Nav.Link className="tab" eventKey="2">
               Yhteenveto
             </Nav.Link>
           </Nav.Item>
