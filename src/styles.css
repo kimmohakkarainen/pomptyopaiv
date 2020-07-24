@@ -3,6 +3,10 @@
   text-align: center;
 }
 
+body {
+  background-color: #202020;
+}
+
 .hyv:hover:hover {
   background-color: wheat;
 }
@@ -22,4 +26,47 @@ td.today {
 div.today {
   background-color: #40e0d0;
   margin: 9px;
+}
+.yla {
+  padding: 0em;
+}
+div.yla.container-fluid {
+  background-color: white;
+}
+.tab {
+  background-color: var(--dark);
+  color: white;
+
+  box-shadow: 2px 2px 2px black;
+}
+.nav-link.active {
+  background-color: #202020;
+}
+
+.lenk {
+  background-color: var(--dark);
+}
+.btn {
+  color: white;
+}
+
+.katlenk {
+  padding: 0.5em;
+  background-color: var(--dark);
+  margin: 1em;
+  box-shadow: 2px 2px 2px 1px black;
+}
+
+.metslenk {
+  padding: 0.5em;
+  background-color: var(--dark);
+  margin: 1em;
+  box-shadow: 2px 2px 2px 1px black;
+}
+.card-header {
+  color: white;
+}
+.taulu {
+  color: white;
+  background-color: var(--dark);
 }
