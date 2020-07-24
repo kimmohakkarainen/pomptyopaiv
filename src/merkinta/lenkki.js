@@ -10,42 +10,42 @@ import {
   Card,
   Form
 } from "react-bootstrap";
-import { postKatulenkki } from "../actions";
+import { postMerkinta } from "../actions";
 
-function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
+function Lenkki({ merkinta, merkinnat, postMerkinta }) {
   function kesto(e) {
-    const newvalue = Object.assign({}, katulenkki, { kesto: e.target.value });
-    postKatulenkki(newvalue);
+    const newvalue = Object.assign({}, merkinta, { kesto: e.target.value });
+    postMerkinta(newvalue);
   }
   function juoruaminen(e) {
-    const newvalue = Object.assign({}, katulenkki, {
+    const newvalue = Object.assign({}, merkinta, {
       Juoruaminen: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta(newvalue);
   }
   function UlkoiluLopina(e) {
-    const newvalue = Object.assign({}, katulenkki, {
+    const newvalue = Object.assign({}, merkinta, {
       UlkoiluLopina: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta(newvalue);
   }
   function OhituksetLenkilla(e) {
-    const newvalue = Object.assign({}, katulenkki, {
+    const newvalue = Object.assign({}, merkinta, {
       OhituksetLenkilla: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta(newvalue);
   }
   function Rauhoittuminen(e) {
-    const newvalue = Object.assign({}, katulenkki, {
+    const newvalue = Object.assign({}, merkinta, {
       Rauhoittuminen: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta(newvalue);
   }
   function Arvio(e) {
-    const newvalue = Object.assign({}, katulenkki, {
+    const newvalue = Object.assign({}, merkinta, {
       Arvio: e.target.value
     });
-    postKatulenkki(newvalue);
+    postMerkinta(newvalue);
   }
 
   return (
@@ -53,7 +53,7 @@ function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>kesto</Form.Label>
-          <Form.Control as="select" value={katulenkki.kesto} onChange={kesto}>
+          <Form.Control as="select" value={merkinta.kesto} onChange={kesto}>
             <option>0:05</option>
             <option>0:10</option>
             <option>0:15</option>
@@ -76,7 +76,7 @@ function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
           <Form.Label>juoruaminen</Form.Label>
           <Form.Control
             as="select"
-            value={katulenkki.Juoruaminen}
+            value={merkinta.Juoruaminen}
             onChange={juoruaminen}
           >
             <option>ei ollenkaan</option>
@@ -91,7 +91,7 @@ function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
           <Form.Label>ohitukset</Form.Label>
           <Form.Control
             as="select"
-            value={katulenkki.OhituksetLenkilla}
+            value={merkinta.OhituksetLenkilla}
             onChange={OhituksetLenkilla}
           >
             <option>0</option>
@@ -113,7 +113,7 @@ function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
           <Form.Label>rauhoittuminen pihassa</Form.Label>
           <Form.Control
             as="select"
-            value={katulenkki.Rauhoittuminen}
+            value={merkinta.Rauhoittuminen}
             onChange={Rauhoittuminen}
           >
             <option>kyllä</option>
@@ -124,7 +124,7 @@ function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>arvio</Form.Label>
-          <Form.Control as="select" value={katulenkki.Arvio} onChange={Arvio}>
+          <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
             <option>huono</option>
             <option>kohtalainen</option>
             <option>ok</option>
@@ -139,7 +139,7 @@ function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={katulenkki.UlkoiluLopina}
+            value={merkinta.UlkoiluLopina}
             onChange={UlkoiluLopina}
           />
         </Form.Group>
@@ -150,17 +150,17 @@ function Katulenkki({ katulenkki, katulenkit, postKatulenkki }) {
 
 function mapStateToProps(state) {
   return {
-    katulenkit: state.katulenkit
+    merkinnat: state.merkinnat
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    postKatulenkki: params => dispatch(postKatulenkki(params))
+    postMerkinta: params => dispatch(postMerkinta(params))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Katulenkki);
+)(Lenkki);

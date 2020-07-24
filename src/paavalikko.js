@@ -13,6 +13,7 @@ import {
 
 import { postWorking } from "./actions";
 import Ulkoilu from "./ulkoilu";
+import Merkinta from "./merkinta";
 import Toka from "./toka";
 import Kolmas from "./kolmas";
 import Yhteenveto from "./yhteenveto";
@@ -47,24 +48,12 @@ function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
         </Nav>
       </Container>
       {selected === "1" && (
-        <Ulkoilu working={working} postWorking={postWorking} />
+        <Merkinta working={working} postWorking={postWorking} />
       )}
       {selected === "2" && (
         <Yhteenveto working={working} postWorking={postWorking} />
       )}
       )}
-      <table>
-        <tbody>
-          {Object.entries(working).map(([key, value]) => {
-            return (
-              <tr key={key}>
-                <td>{key}</td>
-                <td>{value}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
     </div>
   );
 }

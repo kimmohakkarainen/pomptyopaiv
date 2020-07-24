@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -44,26 +44,33 @@ function Ulkoilu({
 
   return (
     <>
-      <ButtonGroup vertical>
-        <Button
-          variant="light"
-          className="katlenk"
-          onClick={() => {
-            addKatulenkki(katulenkit);
-          }}
-        >
-          lisää katulenkki
-        </Button>
-        <Button
-          variant="light"
-          className="metslenk"
-          onClick={() => {
-            addMetsalenkki(metsalenkit);
-          }}
-        >
-          lisää metsälenkki
-        </Button>
-      </ButtonGroup>
+
+      <Button
+        onClick={() => {
+          addKatulenkki(katulenkit);
+        }}
+      >
+        lisää katulenkki
+      </Button>
+      <Button
+        onClick={() => {
+          addMetsalenkki(metsalenkit);
+        }}
+      >
+        lisää metsälenkki
+      </Button>
+      <Button>lisää erottelu</Button>
+
+      <Button>lisää ilmaisu</Button>
+
+      <Button>lisää älytehtävä</Button>
+
+      <Button>lisää kontaktityöskentely</Button>
+
+      <Button>lisää naminetsintä</Button>
+
+      <Button>lisää sosiaalistaminen</Button>
+
       <Accordion defaultActiveKey="0">
         {katulenkit.map(katulenkki => {
           const eventkey = "k" + katulenkki.id;
