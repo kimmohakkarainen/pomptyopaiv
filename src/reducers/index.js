@@ -1,8 +1,6 @@
 export default function pompState(
   state = {
     calendar: [],
-    metsalenkit: [],
-    katulenkit: [],
     merkinnat: [],
     summary: []
   },
