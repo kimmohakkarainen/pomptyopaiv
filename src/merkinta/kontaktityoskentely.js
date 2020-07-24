@@ -12,10 +12,10 @@ import {
 } from "react-bootstrap";
 import { postMerkinta } from "../actions";
 
-function Erottelu({ merkinta, postMerkinta }) {
-  function paikka(e) {
+function Kontaktityoskentely({ merkinta, postMerkinta }) {
+  function Kontakti(e) {
     const newvalue = Object.assign({}, merkinta, {
-      Paikka: e.target.value
+      Kontakti: e.target.value
     });
     postMerkinta(newvalue);
   }
@@ -25,34 +25,25 @@ function Erottelu({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
-  function Hypot(e) {
-    const newvalue = Object.assign({}, merkinta, {
-      Hypot: e.target.value
-    });
-    postMerkinta(newvalue);
-  }
 
   return (
     <div>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>paikka</Form.Label>
-          <Form.Control as="select" value={merkinta.Paikka} onChange={paikka}>
-            <option>keittiö</option>
-            <option>olohuone</option>
-            <option>makuuhuone</option>
-            <option>eteinen</option>
-            <option>parveke</option>
-            <option>etupiha</option>
-            <option>ala-aula</option>
-            <option>Ainon huone</option>
-            <option>telkkarihuone</option>
-            <option>kylpyhuone</option>
-            <option>terassi</option>
-            <option>takapiha</option>
+          <Form.Label>kontakti työskentely</Form.Label>
+          <Form.Control
+            as="select"
+            value={merkinta.Kontakti}
+            onChange={Kontakti}
+          >
+            <option>seuraaminen</option>
+            <option>katsekontakti</option>
+            <option>seuraa-istu</option>
+            <option>muu</option>
           </Form.Control>
         </Form.Group>
       </Form>
+
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>arvio</Form.Label>
@@ -65,25 +56,13 @@ function Erottelu({ merkinta, postMerkinta }) {
           </Form.Control>
         </Form.Group>
       </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>hypohajut</Form.Label>
-          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
-            <option>hypo tyhj</option>
-            <option>emt</option>
-            <option>häh</option>
-            <option>ei tyhjä</option>
-            <option>mahtava</option>
-          </Form.Control>
-        </Form.Group>
-      </Form>
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    katulenkit: state.katulenkit
+    merkinnat: state.merkinnat
   };
 }
 
@@ -96,4 +75,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Erottelu);
+)(Kontaktityoskentely);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -44,6 +44,7 @@ function Ulkoilu({
 
   return (
     <>
+
       <Button
         onClick={() => {
           addKatulenkki(katulenkit);
@@ -75,9 +76,9 @@ function Ulkoilu({
           const eventkey = "k" + katulenkki.id;
           return (
             <Card>
-              <Card.Header>
+              <Card.Header className="lenk">
                 <Accordion.Toggle
-                  as={Button}
+                  as={Card.Header}
                   variant="link"
                   eventKey={eventkey}
                 >
@@ -85,7 +86,7 @@ function Ulkoilu({
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={eventkey}>
-                <Card.Body>
+                <Card.Body className="lenk">
                   <Katulenkki
                     juoruaminen={juoruaminen}
                     katulenkki={katulenkki}
@@ -99,9 +100,9 @@ function Ulkoilu({
           const eventkey = "m" + metsalenkki.id;
           return (
             <Card>
-              <Card.Header>
+              <Card.Header className="lenk">
                 <Accordion.Toggle
-                  as={Button}
+                  as={Card.Header}
                   variant="link"
                   eventKey={eventkey}
                 >
