@@ -6,40 +6,52 @@ import {
   DropdownButton,
   ButtonGroup,
   Dropdown,
-  Form
+  Form,
+  Navbar,
+  Container
 } from "react-bootstrap";
 
 import { postWorking } from "./actions";
 import Ulkoilu from "./ulkoilu";
 import Toka from "./toka";
 import Kolmas from "./kolmas";
+import Yhteenveto from "./yhteenveto";
 
 function Paavalikko({ postWorking, working, katulenkit, metsalenkit }) {
   const [selected, setSelected] = useState("1");
   return (
     <div>
-      <Nav
-        fill
-        variant="tabs"
-        defaultActiveKey="1"
-        onSelect={eventKey => setSelected(eventKey)}
-      >
-        <Nav.Item>
-          <Nav.Link eventKey="1">ulkoilu</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="2">työskentely</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="3">sosiaalistaminen</Nav.Link>
-        </Nav.Item>
-      </Nav>
+      <Navbar bg="dark" variant="dark" className="tyo">
+        <Navbar.Brand className="pop" href="#home">
+          <img alt="" src="pop.png" width="30" height="30" className="tyo" />{" "}
+          pöptyöp
+        </Navbar.Brand>
+      </Navbar>{" "}
+      <Container fluid className="yla">
+        <Nav
+          fill
+          defaultActiveKey="1"
+          onSelect={eventKey => setSelected(eventKey)}
+        >
+          <Nav.Item>
+            <Nav.Link className="Kirjaukset" eventKey="1">
+              Kirjaukset
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link className="yhteenveto" eventKey="2">
+              Yhteenveto
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </Container>
       {selected === "1" && (
         <Ulkoilu working={working} postWorking={postWorking} />
       )}
-      {selected === "2" && <Toka working={working} postWorking={postWorking} />}
-      {selected === "3" && (
-        <Kolmas working={working} postWorking={postWorking} />
+      {selected === "2" && (
+        <Yhteenveto working={working} postWorking={postWorking} />
+      )}
       )}
       <table>
         <tbody>
