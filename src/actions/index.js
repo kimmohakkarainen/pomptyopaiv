@@ -24,6 +24,7 @@ export function connectionError(error) {
   };
 }
 
+/*
 export function addKatulenkki(params) {
   return dispatch => {
     const newid = params.length + 1;
@@ -84,6 +85,7 @@ export function postMetsalenkkiSucceeded(data) {
     }
   };
 }
+*/
 
 export function fetchMerkinnat(date) {
   return dispatch => {
@@ -112,19 +114,37 @@ export function postMerkinta(params) {
   };
 }
 
-/*
-export function postMerkinta(params) {
-  return dispatch => {
-    dispatch(fetchMerkinnatSucceeded(params));
-  };
-}
-*/
-
 export function fetchMerkinnatSucceeded(data) {
   return {
     type: "FETCH_MERKINNAT_SUCCEEDED",
     payload: {
       merkinnat: data
+    }
+  };
+}
+
+/*
+Summary
+*/
+
+export function fetchSummary(date) {
+  return dispatch => {
+    api
+      .getSummary()
+      .then(resp => {
+        dispatch(fetchSummarySucceeded(resp.data));
+      })
+      .catch(error => {
+        dispatch(connectionError(error));
+      });
+  };
+}
+
+export function fetchSummarySucceeded(data) {
+  return {
+    type: "FETCH_SUMMARY_SUCCEEDED",
+    payload: {
+      summary: data
     }
   };
 }
