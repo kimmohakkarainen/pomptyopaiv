@@ -36,6 +36,9 @@ function Kontaktityoskentely({ merkinta, postMerkinta }) {
             value={merkinta.Kontakti}
             onChange={Kontakti}
           >
+            <option default hidden>
+              -
+            </option>
             <option>seuraaminen</option>
             <option>katsekontakti</option>
             <option>seuraa-istu</option>
@@ -48,6 +51,9 @@ function Kontaktityoskentely({ merkinta, postMerkinta }) {
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>arvio</Form.Label>
           <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
+            <option default hidden>
+              -
+            </option>
             <option>huono</option>
             <option>kohtalainen</option>
             <option>ok</option>

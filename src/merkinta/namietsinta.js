@@ -30,6 +30,9 @@ function Namietsinta({ merkinta, postMerkinta }) {
             value={merkinta.Namietsinta}
             onChange={etsinta}
           >
+            <option default hidden>
+              -
+            </option>
             <option>sisällä</option>
             <option>ulkona</option>
           </Form.Control>

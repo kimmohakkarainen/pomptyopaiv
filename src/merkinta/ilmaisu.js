@@ -25,12 +25,16 @@ function Ilmaisu({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+  console.log(merkinta);
   return (
     <div>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>ilmaisu</Form.Label>
           <Form.Control as="select" value={merkinta.Ilmaisu} onChange={ilmaisu}>
+            <option default hidden>
+              -
+            </option>
             <option>kansio</option>
             <option>laatikko</option>
             <option>ovi</option>
@@ -40,6 +44,9 @@ function Ilmaisu({ merkinta, postMerkinta }) {
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>arvio</Form.Label>
           <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
+            <option default hidden>
+              -
+            </option>
             <option>huono</option>
             <option>kohtalainen</option>
             <option>ok</option>

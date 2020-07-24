@@ -54,20 +54,23 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>kesto</Form.Label>
           <Form.Control as="select" value={merkinta.kesto} onChange={kesto}>
-            <option>0:05</option>
-            <option>0:10</option>
-            <option>0:15</option>
-            <option>0:20</option>
-            <option>0:30</option>
-            <option>0:40</option>
-            <option>0:50</option>
-            <option>1:00</option>
-            <option>1:10</option>
-            <option>1:20</option>
-            <option>1:30</option>
-            <option>1:40</option>
-            <option>1:50</option>
-            <option>2:00</option>
+            <option default hidden>
+              -
+            </option>
+            <option value={5}>0:05</option>
+            <option value={10}>0:10</option>
+            <option value={15}>0:15</option>
+            <option value={20}>0:20</option>
+            <option value={30}>0:30</option>
+            <option value={40}>0:40</option>
+            <option value={50}>0:50</option>
+            <option value={60}>1:00</option>
+            <option value={70}>1:10</option>
+            <option value={80}>1:20</option>
+            <option value={90}>1:30</option>
+            <option value={100}>1:40</option>
+            <option value={110}>1:50</option>
+            <option value={120}>2:00</option>
           </Form.Control>
         </Form.Group>
       </Form>
@@ -79,6 +82,9 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
             value={merkinta.Juoruaminen}
             onChange={juoruaminen}
           >
+            <option default hidden>
+              -
+            </option>
             <option>ei ollenkaan</option>
             <option>jonkin verran</option>
             <option>paljon</option>
@@ -94,6 +100,9 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
             value={merkinta.OhituksetLenkilla}
             onChange={OhituksetLenkilla}
           >
+            <option default hidden>
+              -
+            </option>
             <option>0</option>
             <option>1</option>
             <option>2</option>
@@ -116,6 +125,9 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
             value={merkinta.Rauhoittuminen}
             onChange={Rauhoittuminen}
           >
+            <option default hidden>
+              -
+            </option>
             <option>kyllä</option>
             <option>ei</option>
           </Form.Control>
@@ -125,6 +137,9 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>arvio</Form.Label>
           <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
+            <option default hidden>
+              -
+            </option>
             <option>huono</option>
             <option>kohtalainen</option>
             <option>ok</option>
