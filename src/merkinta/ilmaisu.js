@@ -13,14 +13,24 @@ import {
 import { postMerkinta } from "../actions";
 
 function Ilmaisu({ merkinta, postMerkinta }) {
-  function Ilmaisu(e) {}
-  function Arvio(e) {}
+  function ilmaisu(e) {
+    const newvalue = Object.assign({}, merkinta, {
+      Ilmaisu: e.target.value
+    });
+    postMerkinta(newvalue);
+  }
+  function Arvio(e) {
+    const newvalue = Object.assign({}, merkinta, {
+      Arvio: e.target.value
+    });
+    postMerkinta(newvalue);
+  }
   return (
     <div>
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>ilmaisu</Form.Label>
-          <Form.Control as="select" value={merkinta.Ilmaisu} onChange={Ilmaisu}>
+          <Form.Control as="select" value={merkinta.Ilmaisu} onChange={ilmaisu}>
             <option>kansio</option>
             <option>laatikko</option>
             <option>ovi</option>
