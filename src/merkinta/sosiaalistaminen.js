@@ -15,7 +15,7 @@ import { postMerkinta } from "../actions";
 function Sosiaalistaminen({ merkinta, postMerkinta }) {
   function kesto(e) {
     const newvalue = Object.assign({}, merkinta, {
-      kesto: e.target.value
+      soskesto: e.target.value
     });
     postMerkinta(newvalue);
   }
@@ -44,7 +44,7 @@ function Sosiaalistaminen({ merkinta, postMerkinta }) {
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>kesto</Form.Label>
-          <Form.Control as="select" value={merkinta.kesto} onChange={kesto}>
+          <Form.Control as="select" value={merkinta.soskesto} onChange={kesto}>
             <option default hidden>
               -
             </option>
