@@ -23,49 +23,56 @@ function Yhteenveto({ fetchSummary, summary }) {
   }, [fetchSummary]);
   console.log(summary);
 
-  if (summary != null && summary.length > 3) {
-    const ulkoilukerrat = summary[0][1];
-  }
   return (
     <div className="yhtvet">
       <Table striped bordered variant="light" className="taulu">
         {summary.length > 0 && (
           <tbody>
             <tr>
-              <td>Ulkoilukertoja</td>
+              <td>Katulenkkejä</td>
               <td>{summary[0][1]}</td>
             </tr>
             <tr>
-              <td>Ulkoilujen kesto</td>
-              <td>{summary[1][1]}</td>
+              <td>Katulenkkien kesto</td>
+              <td>{summary[1][1]}min</td>
             </tr>
+
+            <tr>
+              <td>Metsälenkkejä</td>
+              <td>{summary[2][1]}</td>
+            </tr>
+            <tr>
+              <td>Metsälenkkien kesto</td>
+              <td>{summary[3][1]}min</td>
+            </tr>
+
             <tr>
               <td>Älytehtäviä</td>
-              <td>{summary[3][1]}</td>
-            </tr>
-            <tr>
-              <td>Erottelut</td>
               <td>{summary[4][1]}</td>
             </tr>
             <tr>
-              <td>Ilmaisut</td>
+              <td>Erottelut</td>
               <td>{summary[5][1]}</td>
             </tr>
             <tr>
-              <td>Kontaktityöskentelyt</td>
+              <td>Ilmaisut</td>
               <td>{summary[6][1]}</td>
             </tr>
             <tr>
-              <td>Namietsintä</td>
+              <td>Kontaktityöskentelyt</td>
               <td>{summary[7][1]}</td>
             </tr>
             <tr>
-              <td>Sosiaalistaminen</td>
+              <td>Namietsintä</td>
               <td>{summary[8][1]}</td>
             </tr>
             <tr>
-              <td>Sosiaalistamisen kesto</td>
+              <td>Sosiaalistaminen</td>
               <td>{summary[9][1]}</td>
+            </tr>
+            <tr>
+              <td>Sosiaalistamisen kesto</td>
+              <td>{summary[10][1]}</td>
             </tr>
           </tbody>
         )}
