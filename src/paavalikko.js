@@ -32,6 +32,7 @@ function Paavalikko({ fetchCalendar, calendar }) {
           <img alt="" src="/pop.png" width="30" height="30" className="tyo" />{" "}
           pöptyöp
         </Navbar.Brand>
+        {date}
       </Navbar>
       {date === null && (
         <Kalenteri calendar={calendar} onSelect={onSelectDate} />
