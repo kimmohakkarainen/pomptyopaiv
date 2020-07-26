@@ -17,11 +17,11 @@ import {
 } from "react-bootstrap";
 import { fetchSummary } from "./actions";
 
-function Yhteenveto({ fetchSummary, summary }) {
+function Yhteenveto({ fetchSummary, summary, date }) {
   useEffect(() => {
-    fetchSummary();
-  }, [fetchSummary]);
-  console.log(summary);
+    console.log("fetchSummary " + date);
+    fetchSummary(date);
+  }, [fetchSummary, date]);
 
   return (
     <div className="yhtvet">

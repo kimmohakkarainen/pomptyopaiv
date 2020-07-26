@@ -13,11 +13,8 @@ import Paavalikko from "./paavalikko.js";
 
 function Kalenteri({ calendar, onSelect }) {
   function onClick(event) {
-    console.log(event.target.id);
     onSelect(event.target.id);
   }
-
-  console.log(calendar);
 
   return (
     <>
