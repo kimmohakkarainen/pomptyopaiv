@@ -25,12 +25,14 @@ function Erottelu({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
-  function Hypot(e) {
-    const newvalue = Object.assign({}, merkinta, {
-      Hypot: e.target.value
-    });
+  function Haju(avain, e) {
+    const value = {};
+    value[avain] = e.target.value;
+
+    const newvalue = Object.assign({}, merkinta, value);
     postMerkinta(newvalue);
   }
+
   function Tekija(e) {
     const newvalue = Object.assign({}, merkinta, {
       Tekija: e.target.value
@@ -86,14 +88,19 @@ function Erottelu({ merkinta, postMerkinta }) {
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>hypohaju</Form.Label>
-          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+          <Form.Control
+            as="select"
+            value={merkinta.HypoHaju}
+            onChange={e => Haju("HypoHaju", e)}
+          >
             <option default hidden>
               -
             </option>
             <option>h1</option>
             <option>h2</option>
             <option>h3</option>
-            <option>h4</option>><option>h5</option>
+            <option>h4</option>
+            <option>h5</option>
             <option>h6</option>
             <option>h7</option>
           </Form.Control>
@@ -102,7 +109,11 @@ function Erottelu({ merkinta, postMerkinta }) {
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>toinen haju</Form.Label>
-          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+          <Form.Control
+            as="select"
+            value={merkinta.Haju2}
+            onChange={e => Haju("Haju2", e)}
+          >
             <option default hidden>
               -
             </option>
@@ -120,7 +131,11 @@ function Erottelu({ merkinta, postMerkinta }) {
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>kolmas haju</Form.Label>
-          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+          <Form.Control
+            as="select"
+            value={merkinta.Haju3}
+            onChange={e => Haju("Haju3", e)}
+          >
             <option default hidden>
               -
             </option>
@@ -138,7 +153,11 @@ function Erottelu({ merkinta, postMerkinta }) {
       <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>neljäs haju</Form.Label>
-          <Form.Control as="select" value={merkinta.Hypot} onChange={Hypot}>
+          <Form.Control
+            as="select"
+            value={merkinta.Haju4}
+            onChange={e => Haju("Haju4", e)}
+          >
             <option default hidden>
               -
             </option>
