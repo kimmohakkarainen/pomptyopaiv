@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -13,6 +13,8 @@ import {
 import { postMerkinta } from "../actions";
 
 function Lenkki({ merkinta, merkinnat, postMerkinta }) {
+  const [lopina, setLopina] = useState(merkinta.UlkoiluLopina);
+
   function kesto(e) {
     const newvalue = Object.assign({}, merkinta, { kesto: e.target.value });
     postMerkinta(newvalue);
@@ -23,6 +25,16 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+
+  function onLopinaFocusOut() {
+    const newvalue = Object.assign({}, merkinta, {
+      UlkoiluLopina: lopina
+    });
+    console.log("onLopinaFocusOut");
+    console.log(newvalue);
+    postMerkinta(newvalue);
+  }
+
   function UlkoiluLopina(e) {
     const newvalue = Object.assign({}, merkinta, {
       UlkoiluLopina: e.target.value
@@ -51,7 +63,7 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
   return (
     <div>
       <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="lenkki.rauhoittuminen">
           <Form.Label>rauhoittuminen pihassa</Form.Label>
           <Form.Control
             as="select"
@@ -65,9 +77,7 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
             <option>ei</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="lenkki.kesto">
           <Form.Label>kesto</Form.Label>
           <Form.Control as="select" value={merkinta.kesto} onChange={kesto}>
             <option default hidden>
@@ -89,9 +99,7 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
             <option value={120}>2:00</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="lenkki.juoruaminen">
           <Form.Label>juoruaminen</Form.Label>
           <Form.Control
             as="select"
@@ -106,10 +114,7 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
             <option>paljon</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="lenkki.ohitukset">
           <Form.Label>ohitukset</Form.Label>
           <Form.Control
             as="select"
@@ -131,10 +136,7 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
             <option>9+</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="lenkki.arvio">
           <Form.Label>arvio</Form.Label>
           <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
             <option default hidden>
@@ -149,13 +151,14 @@ function Lenkki({ merkinta, merkinnat, postMerkinta }) {
         </Form.Group>
       </Form>
       <Form>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Group controlId="lenkki.muuta">
           <Form.Label>muuta</Form.Label>
           <Form.Control
             as="textarea"
             rows="3"
-            value={merkinta.UlkoiluLopina}
-            onChange={UlkoiluLopina}
+            value={lopina}
+            onChange={e => setLopina(e.target.value)}
+            onBlur={onLopinaFocusOut}
           />
         </Form.Group>
       </Form>

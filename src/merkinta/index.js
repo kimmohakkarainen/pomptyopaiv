@@ -20,6 +20,7 @@ import Kontaktityoskentely from "./kontaktityoskentely";
 import Namietsinta from "./namietsinta.js";
 import Ilmaisu from "./ilmaisu.js";
 import Sosiaalistaminen from "./sosiaalistaminen.js";
+import Yksinolo from "./yksinolo.js";
 
 const MERKINTALOOKUP = {
   metsalenkki: "metsälenkki",
@@ -30,7 +31,8 @@ const MERKINTALOOKUP = {
   erottelu: "erottelu",
   kontakti: "kontakti",
   alytehtava: "älytehtävä",
-  sosiaalistaminen: "sosiaalistaminen"
+  sosiaalistaminen: "sosiaalistaminen",
+  yksinolo: "yksin olo"
 };
 
 const NONOPENING = {
@@ -38,49 +40,61 @@ const NONOPENING = {
   alytehtava: true
 };
 
-function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
+function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
   useEffect(() => {
-    fetchMerkinnat(0);
-  }, [fetchMerkinnat]);
+    console.log("fetchMerkinnat " + date);
+    fetchMerkinnat(date);
+  }, [fetchMerkinnat, date]);
 
   function katuLenkki() {
-    postMerkinta({ type: "katulenkki" });
+    postMerkinta({ type: "katulenkki", date: date });
   }
 
   function metsaLenkki() {
-    postMerkinta({ type: "metsalenkki" });
+    postMerkinta({ type: "metsalenkki", date: date });
   }
 
   function erottelu() {
-    postMerkinta({ type: "erottelu" });
+    postMerkinta({ type: "erottelu", date: date });
   }
 
   function ilmaisu() {
-    postMerkinta({ type: "ilmaisu" });
+    postMerkinta({ type: "ilmaisu", date: date });
   }
 
   function alytehtava() {
-    postMerkinta({ type: "alytehtava" });
+    postMerkinta({ type: "alytehtava", date: date });
   }
 
   function kontakti() {
-    postMerkinta({ type: "kontakti" });
+    postMerkinta({ type: "kontakti", date: date });
   }
 
   function namietsintasisalla() {
-    postMerkinta({ type: "namietsintasis", Namietsinta: "sisällä" });
+    postMerkinta({
+      type: "namietsintasis",
+      Namietsinta: "sisällä",
+      date: date
+    });
   }
 
   function namietsintaulkona() {
-    postMerkinta({ type: "namietsintaulk", Namietsinta: "ulkona" });
+    postMerkinta({ type: "namietsintaulk", Namietsinta: "ulkona", date: date });
   }
 
   function sosiaalistaminen() {
     postMerkinta({
-      type: "sosiaalistaminen"
+      type: "sosiaalistaminen",
+      date: date
     });
   }
 
+  function yksinolo() {
+    postMerkinta({
+      type: "yksinolo",
+      date: date
+    });
+  }
   return (
     <>
       <Container>
@@ -117,13 +131,16 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
           <Button variant="dark" onClick={sosiaalistaminen}>
             lisää sosiaalistaminen
           </Button>
+          <Button variant="dark" onClick={yksinolo}>
+            lisää yksinolo
+          </Button>
         </ButtonGroup>
       </Container>
       <Accordion defaultActiveKey="0">
         {merkinnat.map(merkinta => {
           const eventkey = merkinta.id;
           return (
-            <div>
+            <div key={eventkey}>
               {NONOPENING[merkinta.type] && (
                 <Card key={eventkey}>
                   <Card.Header>{MERKINTALOOKUP[merkinta.type]}</Card.Header>
@@ -166,6 +183,9 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat }) {
                       )}
                       {merkinta.type === "sosiaalistaminen" && (
                         <Sosiaalistaminen merkinta={merkinta} />
+                      )}
+                      {merkinta.type === "yksinolo" && (
+                        <Yksinolo merkinta={merkinta} />
                       )}
                     </Card.Body>
                   </Accordion.Collapse>
