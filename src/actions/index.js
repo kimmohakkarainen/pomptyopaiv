@@ -12,7 +12,7 @@ export function connectionError(error) {
 export function fetchMerkinnat(date) {
   return dispatch => {
     api
-      .getRecords()
+      .getRecords(date)
       .then(resp => {
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
@@ -52,7 +52,7 @@ Summary
 export function fetchSummary(date) {
   return dispatch => {
     api
-      .getSummary()
+      .getSummary(date)
       .then(resp => {
         dispatch(fetchSummarySucceeded(resp.data));
       })
@@ -67,6 +67,32 @@ export function fetchSummarySucceeded(data) {
     type: "FETCH_SUMMARY_SUCCEEDED",
     payload: {
       summary: data
+    }
+  };
+}
+
+/* 
+Calendar
+*/
+
+export function fetchCalendar() {
+  return dispatch => {
+    api
+      .getCalendar()
+      .then(resp => {
+        dispatch(fetchCalendarSucceeded(resp.data));
+      })
+      .catch(error => {
+        dispatch(connectionError(error));
+      });
+  };
+}
+
+export function fetchCalendarSucceeded(data) {
+  return {
+    type: "FETCH_CALENDAR_SUCCEEDED",
+    payload: {
+      calendar: data
     }
   };
 }

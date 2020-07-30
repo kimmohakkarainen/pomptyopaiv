@@ -1,5 +1,6 @@
 export default function pompState(
   state = {
+    selectedDate: null,
     calendar: [],
     merkinnat: [],
     summary: []
