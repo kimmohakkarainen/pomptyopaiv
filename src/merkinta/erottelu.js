@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -13,6 +13,8 @@ import {
 import { postMerkinta } from "../actions";
 
 function Erottelu({ merkinta, postMerkinta }) {
+  const [lopina, setLopina] = useState(merkinta.ErotteluLopina);
+
   function paikka(e) {
     const newvalue = Object.assign({}, merkinta, {
       Paikka: e.target.value
@@ -39,6 +41,16 @@ function Erottelu({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+
+  function onLopinaFocusOut() {
+    const newvalue = Object.assign({}, merkinta, {
+      ErotteluLopina: lopina
+    });
+    console.log("onLopinaFocusOut");
+    console.log(newvalue);
+    postMerkinta(newvalue);
+  }
+
   function ErotteluLopina(e) {
     const newvalue = Object.assign({}, merkinta, {
       ErotteluLopina: e.target.value
@@ -193,8 +205,9 @@ function Erottelu({ merkinta, postMerkinta }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={merkinta.ErotteluLopina}
-            onChange={ErotteluLopina}
+            value={lopina}
+            onChange={e => setLopina(e.target.value)}
+            onBlur={onLopinaFocusOut}
           />
         </Form.Group>
       </Form>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -13,6 +13,8 @@ import {
 import { postMerkinta } from "../actions";
 
 function Ilmaisu({ merkinta, postMerkinta }) {
+  const [lopina, setLopina] = useState(merkinta.IlmaisuLopina);
+
   function ilmaisu(e) {
     const newvalue = Object.assign({}, merkinta, {
       Ilmaisu: e.target.value
@@ -25,6 +27,16 @@ function Ilmaisu({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+
+  function onLopinaFocusOut() {
+    const newvalue = Object.assign({}, merkinta, {
+      IlmaisuLopina: lopina
+    });
+    console.log("onLopinaFocusOut");
+    console.log(newvalue);
+    postMerkinta(newvalue);
+  }
+
   function IlmaisuLopina(e) {
     const newvalue = Object.assign({}, merkinta, {
       IlmaisuLopina: e.target.value
@@ -66,8 +78,9 @@ function Ilmaisu({ merkinta, postMerkinta }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={merkinta.IlmaisuLopina}
-            onChange={IlmaisuLopina}
+            value={lopina}
+            onChange={e => setLopina(e.target.value)}
+            onBlur={onLopinaFocusOut}
           />
         </Form.Group>
       </Form>

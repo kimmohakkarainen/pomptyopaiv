@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -13,6 +13,8 @@ import {
 import { postMerkinta } from "../actions";
 
 function Kontaktityoskentely({ merkinta, postMerkinta }) {
+  const [lopina, setLopina] = useState(merkinta.KontaktiLopina);
+
   function Kontakti(e) {
     const newvalue = Object.assign({}, merkinta, {
       Kontakti: e.target.value
@@ -25,6 +27,16 @@ function Kontaktityoskentely({ merkinta, postMerkinta }) {
     });
     postMerkinta(newvalue);
   }
+
+  function onLopinaFocusOut() {
+    const newvalue = Object.assign({}, merkinta, {
+      KontaktiLopina: lopina
+    });
+    console.log("onLopinaFocusOut");
+    console.log(newvalue);
+    postMerkinta(newvalue);
+  }
+
   function KontaktiLopina(e) {
     const newvalue = Object.assign({}, merkinta, {
       KontaktiLopina: e.target.value
@@ -74,8 +86,9 @@ function Kontaktityoskentely({ merkinta, postMerkinta }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={merkinta.KontaktiLopina}
-            onChange={KontaktiLopina}
+            value={lopina}
+            onChange={e => setLopina(e.target.value)}
+            onBlur={onLopinaFocusOut}
           />
         </Form.Group>
       </Form>

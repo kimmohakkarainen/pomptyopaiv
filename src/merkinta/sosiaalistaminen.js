@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
   Button,
@@ -13,6 +13,8 @@ import {
 import { postMerkinta } from "../actions";
 
 function Sosiaalistaminen({ merkinta, postMerkinta }) {
+  const [lopina, setLopina] = useState(merkinta.Sosiaalistamislopina);
+
   function kesto(e) {
     const newvalue = Object.assign({}, merkinta, {
       soskesto: e.target.value
@@ -32,6 +34,14 @@ function Sosiaalistaminen({ merkinta, postMerkinta }) {
     postMerkinta(newvalue);
   }
 
+  function onLopinaFocusOut() {
+    const newvalue = Object.assign({}, merkinta, {
+      Sosiaalistamislopina: lopina
+    });
+    console.log("onLopinaFocusOut");
+    console.log(newvalue);
+    postMerkinta(newvalue);
+  }
   function Sosiaalistamislopina(e) {
     const newvalue = Object.assign({}, merkinta, {
       Sosiaalistamislopina: e.target.value
@@ -104,8 +114,9 @@ function Sosiaalistaminen({ merkinta, postMerkinta }) {
           <Form.Control
             as="textarea"
             rows="3"
-            value={merkinta.Sosiaalistamislopina}
-            onChange={Sosiaalistamislopina}
+            value={lopina}
+            onChange={e => setLopina(e.target.value)}
+            onBlur={onLopinaFocusOut}
           />
         </Form.Group>
       </Form>
