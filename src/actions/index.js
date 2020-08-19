@@ -9,28 +9,58 @@ export function connectionError(error) {
   };
 }
 
-export function fetchMerkinnat(date) {
-  return dispatch => {
+const credentials = {
+  access_token: null,
+  refresh_token: null
+};
+
+export function postLogin(params) {
+  return (dispatch) => {
     api
-      .getRecords(date)
-      .then(resp => {
+      .postLogin(params)
+      .then((resp) => {
+        console.log(resp.data);
+        dispatch(loginSucceeded(resp.data));
+      })
+      .catch((error) => {
+        dispatch(connectionError(error));
+      });
+  };
+}
+
+export function loginSucceeded(data) {
+  credentials.access_token = data.access_token;
+  credentials.refresh_token = data.refresh_token;
+  return {
+    type: "LOGIN_SUCCEEDED",
+    payload: {
+      credentials: data
+    }
+  };
+}
+
+export function fetchMerkinnat(date) {
+  return (dispatch) => {
+    api
+      .getRecords(credentials.access_token, date)
+      .then((resp) => {
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(connectionError(error));
       });
   };
 }
 
 export function postMerkinta(params) {
-  return dispatch => {
+  return (dispatch) => {
     api
-      .postRecord(params)
-      .then(resp => {
+      .postRecord(credentials.access_token, params)
+      .then((resp) => {
         console.log(resp.data);
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(connectionError(error));
       });
   };
@@ -50,13 +80,13 @@ Summary
 */
 
 export function fetchSummary(date) {
-  return dispatch => {
+  return (dispatch) => {
     api
-      .getSummary(date)
-      .then(resp => {
+      .getSummary(credentials.access_token, date)
+      .then((resp) => {
         dispatch(fetchSummarySucceeded(resp.data));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(connectionError(error));
       });
   };
@@ -76,13 +106,13 @@ Calendar
 */
 
 export function fetchCalendar() {
-  return dispatch => {
+  return (dispatch) => {
     api
-      .getCalendar()
-      .then(resp => {
+      .getCalendar(credentials.access_token)
+      .then((resp) => {
         dispatch(fetchCalendarSucceeded(resp.data));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(connectionError(error));
       });
   };
