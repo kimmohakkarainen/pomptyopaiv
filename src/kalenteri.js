@@ -31,10 +31,10 @@ function Kalenteri({ calendar, onSelect }) {
           </tr>
         </thead>
         <tbody>
-          {calendar.map(rivi => {
+          {calendar.map((rivi) => {
             return (
               <tr key={rivi.week}>
-                {rivi.days.map(sarake => {
+                {rivi.days.map((sarake) => {
                   if (sarake.today) {
                     return (
                       <td id={sarake.text} key={sarake.text} className="today">
@@ -96,61 +96,9 @@ function mapStateToProps(state) {
   return {
     calendar: state.calendar
   };
-
-  /*
-  return {
-    calendar: [
-      [
-        { value: 29, empty: true, text: "höpö" },
-        { value: 30, empty: true, text: "höpö" },
-        { value: 1, empty: true, text: "höpö" },
-        { value: 2, empty: true },
-        { value: 3, empty: true, text: "höpö" },
-        { value: 4, empty: true, text: "höpö" },
-        { value: 5, empty: true, text: "höpö" }
-      ],
-      [
-        { value: 6, empty: true, text: "höpö" },
-        { value: 7, empty: true, text: "höpö" },
-        { value: 8, empty: true, text: "höpö" },
-        { value: 9, today: true, empty: true, text: "höpö" },
-        { value: 10, empty: true, text: "höpö" },
-        { value: 11, empty: true, text: "höpö" },
-        { value: 12, empty: true, text: "höpö" }
-      ],
-      [
-        { value: 13, empty: true, text: "höpö" },
-        { value: 14, empty: true, text: "höpö" },
-        { value: 15, empty: true, text: "höpö" },
-        { value: 16, empty: true, text: "höpö" },
-        { value: 17, empty: true, text: "höpö" },
-        { value: 18, empty: true, text: "höpö" },
-        { value: 19, empty: true, text: "höpö" }
-      ],
-      [
-        { value: 20, empty: true, text: "höpö" },
-        { value: 21, empty: true, text: "höpö" },
-        { value: 22, empty: true, text: "höpö" },
-        { value: 23, empty: true, text: "höpö" },
-        { value: 24, empty: true, text: "höpö" },
-        { value: 25, empty: true, text: "höpö" },
-        { value: 26, empty: true, text: "höpö" }
-      ],
-      [
-        { value: 27, empty: true, text: "höpö" },
-        { value: 28, empty: true, text: "höpö" },
-        { value: 29, empty: true, text: "höpö" },
-        { value: 30, empty: true, text: "höpö" },
-        { value: 31, empty: true, text: "höpö" },
-        { value: 1, empty: true, text: "höpö" },
-        { value: 2, empty: true, text: "höpö" }
-      ]
-    ],
-  };
-  */
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     /*
     fetchQueue: () => dispatch(fetchQueue()),
@@ -159,7 +107,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Kalenteri);
+export default connect(mapStateToProps, mapDispatchToProps)(Kalenteri);
