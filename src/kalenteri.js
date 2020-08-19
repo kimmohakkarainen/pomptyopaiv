@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {
-  Jumbotron,
-  Badge,
-  Button,
-  Table,
-  Tooltip,
-  Overlay,
-  OverlayTrigger
-} from "react-bootstrap";
-import Paavalikko from "./paavalikko.js";
+import { Table, Tooltip, Overlay, OverlayTrigger } from "react-bootstrap";
 
 function Kalenteri({ calendar, onSelect }) {
   function onClick(event) {
