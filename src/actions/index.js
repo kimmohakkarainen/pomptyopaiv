@@ -4,7 +4,8 @@ export function connectionError(error) {
   return {
     type: "CONNECTION_ERROR",
     payload: {
-      error: error
+      error: error,
+      credentials: null
     }
   };
 }
@@ -19,7 +20,6 @@ export function postLogin(params) {
     api
       .postLogin(params)
       .then((resp) => {
-        console.log(resp.data);
         dispatch(loginSucceeded(resp.data));
       })
       .catch((error) => {

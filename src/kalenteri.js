@@ -41,18 +41,10 @@ function Kalenteri({ calendar, onSelect }) {
                     );
                   } else if (sarake.text) {
                     return (
-                      <OverlayTrigger
-                        key={sarake.text}
-                        placement="top"
-                        overlay={
-                          <Tooltip id={sarake.text}>{sarake.text}</Tooltip>
-                        }
-                      >
-                        <td id={sarake.text} key={sarake.text}>
-                          {" "}
-                          {sarake.value}
-                        </td>
-                      </OverlayTrigger>
+                      <td id={sarake.text} key={sarake.text}>
+                        {" "}
+                        {sarake.value}
+                      </td>
                     );
                   } else if (sarake.empty) {
                     return (
@@ -63,12 +55,7 @@ function Kalenteri({ calendar, onSelect }) {
                     );
                   } else {
                     return (
-                      <td
-                        id={sarake.text}
-                        key={sarake.text}
-                        className="kal"
-                        key={sarake.value}
-                      >
+                      <td id={sarake.text} key={sarake.text} className="kal">
                         {sarake.value}
                       </td>
                     );
