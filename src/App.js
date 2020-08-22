@@ -1,27 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Jumbotron } from "react-bootstrap";
 
 import "./styles.css";
 
 import Paavalikko from "./paavalikko.js";
+import Login from "./login";
 
 function App({ credentials }) {
   return (
     <div className="App">
       {credentials != null && <Paavalikko />}
-      {credentials == null && (
-        <Jumbotron>
-          <h1>not logged in</h1>
-        </Jumbotron>
-      )}
+      {credentials == null && <Login />}
     </div>
   );
 }
 
 function mapStateToProps(state) {
   return {
-    calendar: state.calendar
+    credentials: state.credentials
   };
 }
 
