@@ -47,18 +47,23 @@ export function fetchMerkinnat(date) {
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
       .catch((error) => {
-        api.postRefresh(credentials.refresh_token).then((resp) => {
-          credentials.access_token = resp.data.access_token;
-          credentials.refresh_token = resp.data.refresh_token;
-          api
-            .getRecords(credentials.access_token, date)
-            .then((resp) => {
-              dispatch(fetchMerkinnatSucceeded(resp.data));
-            })
-            .catch((error) => {
-              dispatch(connectionError(error));
-            });
-        });
+        api
+          .postRefresh(credentials.refresh_token)
+          .then((resp) => {
+            credentials.access_token = resp.data.access_token;
+            credentials.refresh_token = resp.data.refresh_token;
+            api
+              .getRecords(credentials.access_token, date)
+              .then((resp) => {
+                dispatch(fetchMerkinnatSucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
       });
   };
 }
@@ -72,18 +77,23 @@ export function postMerkinta(params) {
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
       .catch((error) => {
-        api.postRefresh(credentials.refresh_token).then((resp) => {
-          credentials.access_token = resp.data.access_token;
-          credentials.refresh_token = resp.data.refresh_token;
-          api
-            .postRecord(credentials.access_token, params)
-            .then((resp) => {
-              dispatch(fetchMerkinnatSucceeded(resp.data));
-            })
-            .catch((error) => {
-              dispatch(connectionError(error));
-            });
-        });
+        api
+          .postRefresh(credentials.refresh_token)
+          .then((resp) => {
+            credentials.access_token = resp.data.access_token;
+            credentials.refresh_token = resp.data.refresh_token;
+            api
+              .postRecord(credentials.access_token, params)
+              .then((resp) => {
+                dispatch(fetchMerkinnatSucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
       });
   };
 }
@@ -109,18 +119,23 @@ export function fetchSummary(date) {
         dispatch(fetchSummarySucceeded(resp.data));
       })
       .catch((error) => {
-        api.postRefresh(credentials.refresh_token).then((resp) => {
-          credentials.access_token = resp.data.access_token;
-          credentials.refresh_token = resp.data.refresh_token;
-          api
-            .getSummary(credentials.access_token, date)
-            .then((resp) => {
-              dispatch(fetchSummarySucceeded(resp.data));
-            })
-            .catch((error) => {
-              dispatch(connectionError(error));
-            });
-        });
+        api
+          .postRefresh(credentials.refresh_token)
+          .then((resp) => {
+            credentials.access_token = resp.data.access_token;
+            credentials.refresh_token = resp.data.refresh_token;
+            api
+              .getSummary(credentials.access_token, date)
+              .then((resp) => {
+                dispatch(fetchSummarySucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
       });
   };
 }
@@ -146,18 +161,23 @@ export function fetchCalendar() {
         dispatch(fetchCalendarSucceeded(resp.data));
       })
       .catch((error) => {
-        api.postRefresh(credentials.refresh_token).then((resp) => {
-          credentials.access_token = resp.data.access_token;
-          credentials.refresh_token = resp.data.refresh_token;
-          api
-            .getCalendar(credentials.access_token)
-            .then((resp) => {
-              dispatch(fetchCalendarSucceeded(resp.data));
-            })
-            .catch((error) => {
-              dispatch(connectionError(error));
-            });
-        });
+        api
+          .postRefresh(credentials.refresh_token)
+          .then((resp) => {
+            credentials.access_token = resp.data.access_token;
+            credentials.refresh_token = resp.data.refresh_token;
+            api
+              .getCalendar(credentials.access_token)
+              .then((resp) => {
+                dispatch(fetchCalendarSucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
       });
   };
 }
