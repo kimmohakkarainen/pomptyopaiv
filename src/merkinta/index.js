@@ -36,7 +36,8 @@ const MERKINTALOOKUP = {
 };
 
 const NONOPENING = {
-  namietsinta: true,
+  namietsintasis: true,
+  namietsintaulk: true,
   alytehtava: true
 };
 
@@ -137,7 +138,7 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
         </ButtonGroup>
       </Container>
       <Accordion defaultActiveKey="0">
-        {merkinnat.map(merkinta => {
+        {merkinnat.map((merkinta) => {
           const eventkey = merkinta.id;
           return (
             <div key={eventkey}>
@@ -174,10 +175,6 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
                         <Kontaktityoskentely merkinta={merkinta} />
                       )}
 
-                      {merkinta.type === "namietsinta" && (
-                        <Namietsinta merkinta={merkinta} />
-                      )}
-
                       {merkinta.type === "ilmaisu" && (
                         <Ilmaisu merkinta={merkinta} />
                       )}
@@ -205,14 +202,11 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    postMerkinta: params => dispatch(postMerkinta(params)),
-    fetchMerkinnat: params => dispatch(fetchMerkinnat(params))
+    postMerkinta: (params) => dispatch(postMerkinta(params)),
+    fetchMerkinnat: (params) => dispatch(fetchMerkinnat(params))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Merkinta);
+export default connect(mapStateToProps, mapDispatchToProps)(Merkinta);
