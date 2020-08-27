@@ -38,3 +38,16 @@ export function postLogin(params) {
     }
   });
 }
+
+export function postRefresh(refresh_token) {
+  const urlparams =
+    "grant_type=refresh_token&scope=webclient&client_id=eagleeye&refresh_token=" +
+    refresh_token;
+
+  return authClient.post("/oauth/token", urlparams, {
+    auth: {
+      username: "eagleeye",
+      password: "thisissecret"
+    }
+  });
+}
