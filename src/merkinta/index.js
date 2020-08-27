@@ -144,7 +144,15 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
             <div key={eventkey}>
               {NONOPENING[merkinta.type] && (
                 <Card key={eventkey}>
-                  <Card.Header>{MERKINTALOOKUP[merkinta.type]}</Card.Header>
+                  <Card.Header>
+                    <Accordion.Toggle
+                      as={Card.Header}
+                      variant="link"
+                      eventKey={eventkey}
+                    >
+                      {MERKINTALOOKUP[merkinta.type]}
+                    </Accordion.Toggle>
+                  </Card.Header>
                 </Card>
               )}
               {!NONOPENING[merkinta.type] && (
