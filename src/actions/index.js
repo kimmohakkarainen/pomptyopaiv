@@ -28,6 +28,12 @@ export function postLogin({ username, password }) {
   };
 }
 
+export function postLogout() {
+  return (dispatch) => {
+    dispatch(connectionError(null));
+  };
+}
+
 export function loginSucceeded(data) {
   credentials.access_token = data.access_token;
   credentials.refresh_token = data.refresh_token;

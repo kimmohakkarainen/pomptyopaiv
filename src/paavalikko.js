@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
 
-import { fetchCalendar } from "./actions";
+import { fetchCalendar, postLogout } from "./actions";
 
 import Merkinta from "./merkinta";
 import Yhteenveto from "./yhteenveto";
 import Kalenteri from "./kalenteri.js";
 
-function Paavalikko({ fetchCalendar, calendar }) {
+function Paavalikko({ fetchCalendar, postLogout, calendar }) {
   const [selected, setSelected] = useState("1");
   const [date, setDate] = useState(null);
 
@@ -32,7 +32,14 @@ function Paavalikko({ fetchCalendar, calendar }) {
           <img alt="" src="/pop.png" width="30" height="30" className="tyo" />{" "}
           pöptyöp
         </Navbar.Brand>
-        {date}
+        <Nav className="mr-auto">{date}</Nav>
+        <Nav>
+          <NavDropdown title="Dropdown" id="logout">
+            <NavDropdown.Item onClick={() => postLogout()}>
+              Logout
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
       </Navbar>
       {date === null && (
         <Kalenteri calendar={calendar} onSelect={onSelectDate} />
@@ -43,7 +50,7 @@ function Paavalikko({ fetchCalendar, calendar }) {
             <Nav
               fill
               defaultActiveKey="1"
-              onSelect={eventKey => setSelected(eventKey)}
+              onSelect={(eventKey) => setSelected(eventKey)}
             >
               <Nav.Item>
                 <Nav.Link className="tab" eventKey="1">
@@ -72,13 +79,11 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCalendar: params => dispatch(fetchCalendar())
+    fetchCalendar: (params) => dispatch(fetchCalendar()),
+    postLogout: () => dispatch(postLogout())
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Paavalikko);
+export default connect(mapStateToProps, mapDispatchToProps)(Paavalikko);
