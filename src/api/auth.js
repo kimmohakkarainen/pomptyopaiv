@@ -27,13 +27,17 @@ authClient.interceptors.response.use(function (response) {
   }
 });
 
-export function postLogin(params) {
+export function postLogin(username, password) {
   const urlparams =
-    "grant_type=password&scope=webclient&username=john.carnell&password=password1&client_id=eagleeye";
+    "grant_type=password&scope=webclient&username=" +
+    username +
+    "&password=" +
+    password +
+    "&client_id=pomptyop";
 
   return authClient.post("/oauth/token", urlparams, {
     auth: {
-      username: "eagleeye",
+      username: "pomptyop",
       password: "thisissecret"
     }
   });
@@ -41,12 +45,12 @@ export function postLogin(params) {
 
 export function postRefresh(refresh_token) {
   const urlparams =
-    "grant_type=refresh_token&scope=webclient&client_id=eagleeye&refresh_token=" +
+    "grant_type=refresh_token&scope=webclient&client_id=pomptyop&refresh_token=" +
     refresh_token;
 
   return authClient.post("/oauth/token", urlparams, {
     auth: {
-      username: "eagleeye",
+      username: "pomptyop",
       password: "thisissecret"
     }
   });

@@ -7,13 +7,6 @@ function Login({ postLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  /*
-  function postLogin({ username, password }) {
-    console.log("postLogin");
-    console.log(username);
-    console.log(password);
-  }*/
-
   return (
     <Modal.Dialog>
       <Modal.Header>

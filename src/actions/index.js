@@ -15,10 +15,10 @@ const credentials = {
   refresh_token: null
 };
 
-export function postLogin(params) {
+export function postLogin({ username, password }) {
   return (dispatch) => {
     api
-      .postLogin(params)
+      .postLogin(username, password)
       .then((resp) => {
         dispatch(loginSucceeded(resp.data));
       })
