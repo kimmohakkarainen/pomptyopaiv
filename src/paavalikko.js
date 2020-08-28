@@ -22,19 +22,16 @@ function Paavalikko({ fetchCalendar, postLogout, calendar }) {
 
   return (
     <div>
-      <Navbar
-        bg="dark"
-        variant="dark"
-        className="tyo"
-        onClick={() => setDate(null)}
-      >
-        <Navbar.Brand className="pop">
+      <Navbar bg="dark" variant="dark" className="tyo">
+        <Navbar.Brand className="pop" onClick={() => setDate(null)}>
           <img alt="" src="/pop.png" width="30" height="30" className="tyo" />{" "}
           pöptyöp
         </Navbar.Brand>
-        <Nav className="mr-auto">{date}</Nav>
+        <Nav className="mr-auto" onClick={() => setDate(null)}>
+          {date}
+        </Nav>
         <Nav>
-          <NavDropdown title="Dropdown" id="logout">
+          <NavDropdown title="      " id="logout">
             <NavDropdown.Item onClick={() => postLogout()}>
               Logout
             </NavDropdown.Item>
