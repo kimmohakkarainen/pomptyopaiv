@@ -95,7 +95,7 @@ function Erottelu({ merkinta, postMerkinta }) {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="exampleForm.hypohaju">
-          <Form.Label>hypohaju</Form.Label>
+          <Form.Label>hypohaju 1</Form.Label>
           <Form.Control
             as="select"
             value={merkinta.HypoHaju}
