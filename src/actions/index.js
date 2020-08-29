@@ -10,11 +10,6 @@ export function connectionError(error) {
   };
 }
 
-const credentials = {
-  access_token: null,
-  refresh_token: null
-};
-
 export function postLogin({ username, password }) {
   return (dispatch) => {
     api
@@ -30,13 +25,15 @@ export function postLogin({ username, password }) {
 
 export function postLogout() {
   return (dispatch) => {
+    window.localStorage.removeItem("pomptyop-access");
+    window.localStorage.removeItem("pomptyop-refresh");
     dispatch(connectionError(null));
   };
 }
 
 export function loginSucceeded(data) {
-  credentials.access_token = data.access_token;
-  credentials.refresh_token = data.refresh_token;
+  window.localStorage.setItem("pomptyop-access", data.access_token);
+  window.localStorage.setItem("pomptyop-refresh", data.refresh_token);
   return {
     type: "LOGIN_SUCCEEDED",
     payload: {
@@ -47,19 +44,28 @@ export function loginSucceeded(data) {
 
 export function fetchMerkinnat(date) {
   return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
     api
-      .getRecords(credentials.access_token, date)
+      .getRecords(access_token, date)
       .then((resp) => {
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
       .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
         api
-          .postRefresh(credentials.refresh_token)
+          .postRefresh(refresh_token)
           .then((resp) => {
-            credentials.access_token = resp.data.access_token;
-            credentials.refresh_token = resp.data.refresh_token;
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
             api
-              .getRecords(credentials.access_token, date)
+              .getRecords(access_token, date)
               .then((resp) => {
                 dispatch(fetchMerkinnatSucceeded(resp.data));
               })
@@ -76,20 +82,29 @@ export function fetchMerkinnat(date) {
 
 export function postMerkinta(params) {
   return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
     api
-      .postRecord(credentials.access_token, params)
+      .postRecord(access_token, params)
       .then((resp) => {
         console.log(resp.data);
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
       .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
         api
-          .postRefresh(credentials.refresh_token)
+          .postRefresh(refresh_token)
           .then((resp) => {
-            credentials.access_token = resp.data.access_token;
-            credentials.refresh_token = resp.data.refresh_token;
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
             api
-              .postRecord(credentials.access_token, params)
+              .postRecord(access_token, params)
               .then((resp) => {
                 dispatch(fetchMerkinnatSucceeded(resp.data));
               })
@@ -119,19 +134,29 @@ Summary
 
 export function fetchSummary(date) {
   return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
+
     api
-      .getSummary(credentials.access_token, date)
+      .getSummary(access_token, date)
       .then((resp) => {
         dispatch(fetchSummarySucceeded(resp.data));
       })
       .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
         api
-          .postRefresh(credentials.refresh_token)
+          .postRefresh(refresh_token)
           .then((resp) => {
-            credentials.access_token = resp.data.access_token;
-            credentials.refresh_token = resp.data.refresh_token;
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
             api
-              .getSummary(credentials.access_token, date)
+              .getSummary(access_token, date)
               .then((resp) => {
                 dispatch(fetchSummarySucceeded(resp.data));
               })
@@ -161,19 +186,29 @@ Calendar
 
 export function fetchCalendar() {
   return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
+
     api
-      .getCalendar(credentials.access_token)
+      .getCalendar(access_token)
       .then((resp) => {
         dispatch(fetchCalendarSucceeded(resp.data));
       })
       .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
         api
-          .postRefresh(credentials.refresh_token)
+          .postRefresh(refresh_token)
           .then((resp) => {
-            credentials.access_token = resp.data.access_token;
-            credentials.refresh_token = resp.data.refresh_token;
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
             api
-              .getCalendar(credentials.access_token)
+              .getCalendar(access_token)
               .then((resp) => {
                 dispatch(fetchCalendarSucceeded(resp.data));
               })
