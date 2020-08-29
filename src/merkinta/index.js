@@ -25,6 +25,7 @@ import Yksinolo from "./yksinolo.js";
 const MERKINTALOOKUP = {
   metsalenkki: "metsälenkki",
   katulenkki: "katulenkki",
+  yhdistelmalenkki: "yhdistelmälenkki",
   namietsintasis: "namietsintä sisällä",
   namietsintaulk: "namietsintä ulkona",
   ilmaisu: "ilmaisu",
@@ -53,6 +54,10 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
 
   function metsaLenkki() {
     postMerkinta({ type: "metsalenkki", date: date });
+  }
+
+  function yhdistelmaLenkki() {
+    postMerkinta({ type: "yhdistelmalenkki", date: date });
   }
 
   function erottelu() {
@@ -100,12 +105,16 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
     <>
       <Container>
         <ButtonGroup vertical className="vasen">
-          <Button variant="dark" onClick={katuLenkki}>
-            lisää katulenkki
-          </Button>
-          <Button variant="dark" onClick={metsaLenkki}>
-            lisää metsälenkki
-          </Button>
+          <DropdownButton
+            variant="dark"
+            as={ButtonGroup}
+            title="lisää lenkki"
+            id="lenkki-dropdown"
+          >
+            <Dropdown.Item onClick={katuLenkki}>katulenkki</Dropdown.Item>
+            <Dropdown.Item onClick={metsaLenkki}>metsälenkki</Dropdown.Item>
+            <Dropdown.Item onClick={yhdistelmaLenkki}>yhdistelmä</Dropdown.Item>
+          </DropdownButton>
           <Button variant="dark" onClick={erottelu}>
             lisää erottelu
           </Button>
@@ -121,13 +130,15 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
             lisää kontaktityöskentely
           </Button>
 
-          <Button variant="dark" onClick={namietsintasisalla}>
-            lisää naminetsintä sisällä
-          </Button>
-
-          <Button variant="dark" onClick={namietsintaulkona}>
-            lisää naminetsintä ulkona
-          </Button>
+          <DropdownButton
+            variant="dark"
+            as={ButtonGroup}
+            title="lisää namietsintä"
+            id="namietsinta-dropdown"
+          >
+            <Dropdown.Item onClick={namietsintasisalla}>sisällä</Dropdown.Item>
+            <Dropdown.Item onClick={namietsintaulkona}>ulkona</Dropdown.Item>
+          </DropdownButton>
 
           <Button variant="dark" onClick={sosiaalistaminen}>
             lisää sosiaalistaminen
@@ -169,7 +180,8 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
                   <Accordion.Collapse eventKey={eventkey}>
                     <Card.Body className="acco">
                       {(merkinta.type === "katulenkki" ||
-                        merkinta.type === "metsalenkki") && (
+                        merkinta.type === "metsalenkki" ||
+                        merkinta.type === "yhdistelmalenkki") && (
                         <Lenkki merkinta={merkinta} />
                       )}
                       {merkinta.type === "alytehtava" && (
