@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const AUTH_BASE_URL = "http://localhost:8888";
-/* const AUTH_BASE_URL = "https://demo.myatoz.fi:80"; */
+/* const AUTH_BASE_URL = "http://localhost:8888"; */
+const AUTH_BASE_URL = "https://demo.myatoz.fi:80";
 
 export const authClient = axios.create({
   baseURL: AUTH_BASE_URL,

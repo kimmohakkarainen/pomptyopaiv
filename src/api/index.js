@@ -1,8 +1,8 @@
 import axios from "axios";
 export * from "./auth.js";
 
-const API_BASE_URL = "http://localhost:8080";
-/* const API_BASE_URL = "https://demo.myatoz.fi"; */
+/* const API_BASE_URL = "http://localhost:8080"; */
+const API_BASE_URL = "https://demo.myatoz.fi";
 
 export const client = axios.create({
   baseURL: API_BASE_URL,
