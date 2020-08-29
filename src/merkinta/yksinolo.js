@@ -32,20 +32,24 @@ function Yksinolo({ merkinta, postMerkinta }) {
             <option default hidden>
               -
             </option>
-            <option value={5}>0:05</option>
-            <option value={10}>0:10</option>
             <option value={15}>0:15</option>
-            <option value={20}>0:20</option>
             <option value={30}>0:30</option>
-            <option value={40}>0:40</option>
-            <option value={50}>0:50</option>
+            <option value={45}>0:45</option>
             <option value={60}>1:00</option>
-            <option value={70}>1:10</option>
-            <option value={80}>1:20</option>
             <option value={90}>1:30</option>
-            <option value={100}>1:40</option>
-            <option value={110}>1:50</option>
             <option value={120}>2:00</option>
+            <option value={150}>2:30</option>
+            <option value={180}>3:00</option>
+            <option value={210}>3:30</option>
+            <option value={240}>4:00</option>
+            <option value={270}>4:30</option>
+            <option value={300}>5:00</option>
+            <option value={330}>5:30</option>
+            <option value={360}>6:00</option>
+            <option value={390}>6:30</option>
+            <option value={420}>7:00</option>
+            <option value={450}>7:30</option>
+            <option value={480}>8:00</option>
           </Form.Control>
         </Form.Group>
       </Form>
@@ -59,13 +63,10 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    postMerkinta: params => dispatch(postMerkinta(params))
+    postMerkinta: (params) => dispatch(postMerkinta(params))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Yksinolo);
+export default connect(mapStateToProps, mapDispatchToProps)(Yksinolo);
