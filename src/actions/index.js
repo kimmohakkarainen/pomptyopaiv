@@ -4,34 +4,117 @@ export function connectionError(error) {
   return {
     type: "CONNECTION_ERROR",
     payload: {
-      error: error
+      error: error,
+      credentials: null
     }
   };
 }
 
-export function fetchMerkinnat(date) {
-  return dispatch => {
+export function postLogin({ username, password }) {
+  return (dispatch) => {
     api
-      .getRecords(date)
-      .then(resp => {
-        dispatch(fetchMerkinnatSucceeded(resp.data));
+      .postLogin(username, password)
+      .then((resp) => {
+        dispatch(loginSucceeded(resp.data));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(connectionError(error));
       });
   };
 }
 
-export function postMerkinta(params) {
-  return dispatch => {
+export function postLogout() {
+  return (dispatch) => {
+    window.localStorage.removeItem("pomptyop-access");
+    window.localStorage.removeItem("pomptyop-refresh");
+    dispatch(connectionError(null));
+  };
+}
+
+export function loginSucceeded(data) {
+  window.localStorage.setItem("pomptyop-access", data.access_token);
+  window.localStorage.setItem("pomptyop-refresh", data.refresh_token);
+  return {
+    type: "LOGIN_SUCCEEDED",
+    payload: {
+      credentials: data
+    }
+  };
+}
+
+export function fetchMerkinnat(date) {
+  return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
     api
-      .postRecord(params)
-      .then(resp => {
+      .getRecords(access_token, date)
+      .then((resp) => {
+        dispatch(fetchMerkinnatSucceeded(resp.data));
+      })
+      .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
+        api
+          .postRefresh(refresh_token)
+          .then((resp) => {
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
+            api
+              .getRecords(access_token, date)
+              .then((resp) => {
+                dispatch(fetchMerkinnatSucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
+      });
+  };
+}
+
+export function postMerkinta(params) {
+  return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
+    api
+      .postRecord(access_token, params)
+      .then((resp) => {
         console.log(resp.data);
         dispatch(fetchMerkinnatSucceeded(resp.data));
       })
-      .catch(error => {
-        dispatch(connectionError(error));
+      .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
+        api
+          .postRefresh(refresh_token)
+          .then((resp) => {
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
+            api
+              .postRecord(access_token, params)
+              .then((resp) => {
+                dispatch(fetchMerkinnatSucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
       });
   };
 }
@@ -50,14 +133,40 @@ Summary
 */
 
 export function fetchSummary(date) {
-  return dispatch => {
+  return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
+
     api
-      .getSummary(date)
-      .then(resp => {
+      .getSummary(access_token, date)
+      .then((resp) => {
         dispatch(fetchSummarySucceeded(resp.data));
       })
-      .catch(error => {
-        dispatch(connectionError(error));
+      .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
+        api
+          .postRefresh(refresh_token)
+          .then((resp) => {
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
+            api
+              .getSummary(access_token, date)
+              .then((resp) => {
+                dispatch(fetchSummarySucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
       });
   };
 }
@@ -76,14 +185,40 @@ Calendar
 */
 
 export function fetchCalendar() {
-  return dispatch => {
+  return (dispatch) => {
+    const access_token = window.localStorage.getItem("pomptyop-access");
+
     api
-      .getCalendar()
-      .then(resp => {
+      .getCalendar(access_token)
+      .then((resp) => {
         dispatch(fetchCalendarSucceeded(resp.data));
       })
-      .catch(error => {
-        dispatch(connectionError(error));
+      .catch((error) => {
+        const refresh_token = window.localStorage.getItem("pomptyop-refresh");
+        api
+          .postRefresh(refresh_token)
+          .then((resp) => {
+            window.localStorage.setItem(
+              "pomptyop-access",
+              resp.data.access_token
+            );
+            window.localStorage.setItem(
+              "pomptyop-refresh",
+              resp.data.refresh_token
+            );
+            const access_token = resp.data.access_token;
+            api
+              .getCalendar(access_token)
+              .then((resp) => {
+                dispatch(fetchCalendarSucceeded(resp.data));
+              })
+              .catch((error) => {
+                dispatch(connectionError(error));
+              });
+          })
+          .catch((error) => {
+            dispatch(connectionError(error));
+          });
       });
   };
 }

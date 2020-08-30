@@ -81,8 +81,6 @@ function Erottelu({ merkinta, postMerkinta }) {
             <option>takapiha</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
         <Form.Group controlId="exampleForm.ControlSelect1">
           <Form.Label>tekijä</Form.Label>
           <Form.Control as="select" value={merkinta.Tekija} onChange={Tekija}>
@@ -96,14 +94,12 @@ function Erottelu({ merkinta, postMerkinta }) {
             <option>joku muu</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>hypohaju</Form.Label>
+        <Form.Group controlId="exampleForm.hypohaju">
+          <Form.Label>hypohaju 1</Form.Label>
           <Form.Control
             as="select"
             value={merkinta.HypoHaju}
-            onChange={e => Haju("HypoHaju", e)}
+            onChange={(e) => Haju("HypoHaju", e)}
           >
             <option default hidden>
               -
@@ -117,14 +113,52 @@ function Erottelu({ merkinta, postMerkinta }) {
             <option>h7</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+
+        <Form.Group controlId="exampleForm.hypohaju2">
+          <Form.Label>hypohaju 2</Form.Label>
+          <Form.Control
+            as="select"
+            value={merkinta.HypoHaju2}
+            onChange={(e) => Haju("HypoHaju2", e)}
+          >
+            <option default hidden>
+              -
+            </option>
+            <option>h1</option>
+            <option>h2</option>
+            <option>h3</option>
+            <option>h4</option>
+            <option>h5</option>
+            <option>h6</option>
+            <option>h7</option>
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="exampleForm.hypohaju3">
+          <Form.Label>hypohaju 3</Form.Label>
+          <Form.Control
+            as="select"
+            value={merkinta.HypoHaju3}
+            onChange={(e) => Haju("HypoHaju3", e)}
+          >
+            <option default hidden>
+              -
+            </option>
+            <option>h1</option>
+            <option>h2</option>
+            <option>h3</option>
+            <option>h4</option>
+            <option>h5</option>
+            <option>h6</option>
+            <option>h7</option>
+          </Form.Control>
+        </Form.Group>
+        <Form.Group controlId="exampleForm.haju2">
           <Form.Label>toinen haju</Form.Label>
           <Form.Control
             as="select"
             value={merkinta.Haju2}
-            onChange={e => Haju("Haju2", e)}
+            onChange={(e) => Haju("Haju2", e)}
           >
             <option default hidden>
               -
@@ -139,14 +173,12 @@ function Erottelu({ merkinta, postMerkinta }) {
             <option>T</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="exampleForm.haju3">
           <Form.Label>kolmas haju</Form.Label>
           <Form.Control
             as="select"
             value={merkinta.Haju3}
-            onChange={e => Haju("Haju3", e)}
+            onChange={(e) => Haju("Haju3", e)}
           >
             <option default hidden>
               -
@@ -161,14 +193,12 @@ function Erottelu({ merkinta, postMerkinta }) {
             <option>T</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="exampleForm.haju4">
           <Form.Label>neljäs haju</Form.Label>
           <Form.Control
             as="select"
             value={merkinta.Haju4}
-            onChange={e => Haju("Haju4", e)}
+            onChange={(e) => Haju("Haju4", e)}
           >
             <option default hidden>
               -
@@ -183,9 +213,7 @@ function Erottelu({ merkinta, postMerkinta }) {
             <option>T</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="exampleForm.arvio">
           <Form.Label>arvio</Form.Label>
           <Form.Control as="select" value={merkinta.Arvio} onChange={Arvio}>
             <option default hidden>
@@ -198,15 +226,13 @@ function Erottelu({ merkinta, postMerkinta }) {
             <option>mahtava</option>
           </Form.Control>
         </Form.Group>
-      </Form>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Group controlId="exampleForm.muuta">
           <Form.Label>muuta</Form.Label>
           <Form.Control
             as="textarea"
             rows="3"
             value={lopina}
-            onChange={e => setLopina(e.target.value)}
+            onChange={(e) => setLopina(e.target.value)}
             onBlur={onLopinaFocusOut}
           />
         </Form.Group>
@@ -221,13 +247,10 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    postMerkinta: params => dispatch(postMerkinta(params))
+    postMerkinta: (params) => dispatch(postMerkinta(params))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Erottelu);
+export default connect(mapStateToProps, mapDispatchToProps)(Erottelu);
