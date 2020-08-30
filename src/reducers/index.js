@@ -8,7 +8,8 @@ export default function pompState(
   },
   action
 ) {
-  if (action.type === "@@INIT") {
+  console.log(action);
+  if (action.payload == null) {
     const refresh_token = window.localStorage.getItem("pomptyop-refresh");
     const credentials =
       refresh_token === null
