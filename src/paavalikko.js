@@ -8,7 +8,13 @@ import Merkinta from "./merkinta";
 import Yhteenveto from "./yhteenveto";
 import Kalenteri from "./kalenteri.js";
 
-function Paavalikko({ fetchCalendar, postLogout, calendar }) {
+function Paavalikko({
+  fetchCalendar,
+  postLogout,
+  calendar,
+  username,
+  dogname
+}) {
   const [selected, setSelected] = useState("1");
   const [date, setDate] = useState(null);
 
@@ -19,6 +25,8 @@ function Paavalikko({ fetchCalendar, postLogout, calendar }) {
   function onSelectDate(id) {
     setDate(id);
   }
+
+  const title = dogname + " (" + username + ")";
 
   return (
     <div>
@@ -31,7 +39,7 @@ function Paavalikko({ fetchCalendar, postLogout, calendar }) {
           {date}
         </Nav>
         <Nav>
-          <NavDropdown title="      " id="logout">
+          <NavDropdown title={title} id="logout">
             <NavDropdown.Item onClick={() => postLogout()}>
               Logout
             </NavDropdown.Item>
@@ -72,7 +80,9 @@ function Paavalikko({ fetchCalendar, postLogout, calendar }) {
 
 function mapStateToProps(state) {
   return {
-    calendar: state.calendar
+    calendar: state.calendar,
+    username: state.username,
+    dogname: state.dogname
   };
 }
 

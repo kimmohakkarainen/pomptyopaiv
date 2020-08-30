@@ -23,14 +23,6 @@ export function postLogin({ username, password }) {
   };
 }
 
-export function postLogout() {
-  return (dispatch) => {
-    window.localStorage.removeItem("pomptyop-access");
-    window.localStorage.removeItem("pomptyop-refresh");
-    dispatch(connectionError(null));
-  };
-}
-
 export function loginSucceeded(data) {
   window.localStorage.setItem("pomptyop-access", data.access_token);
   window.localStorage.setItem("pomptyop-refresh", data.refresh_token);
@@ -38,6 +30,28 @@ export function loginSucceeded(data) {
     type: "LOGIN_SUCCEEDED",
     payload: {
       credentials: data
+    }
+  };
+}
+
+export function postLogout() {
+  return (dispatch) => {
+    window.localStorage.removeItem("pomptyop-access");
+    window.localStorage.removeItem("pomptyop-refresh");
+    dispatch(logoutSucceeded());
+  };
+}
+
+export function logoutSucceeded() {
+  window.localStorage.removeItem("pomptyop-access");
+  window.localStorage.removeItem("pomptyop-refresh");
+  return {
+    type: "CONNECTION_ERROR",
+    payload: {
+      error: null,
+      credentials: null,
+      username: "",
+      dogname: ""
     }
   };
 }
@@ -74,7 +88,7 @@ export function fetchMerkinnat(date) {
               });
           })
           .catch((error) => {
-            dispatch(connectionError(error));
+            dispatch(logoutSucceeded());
           });
       });
   };
@@ -113,7 +127,7 @@ export function postMerkinta(params) {
               });
           })
           .catch((error) => {
-            dispatch(connectionError(error));
+            dispatch(logoutSucceeded());
           });
       });
   };
@@ -165,7 +179,7 @@ export function fetchSummary(date) {
               });
           })
           .catch((error) => {
-            dispatch(connectionError(error));
+            dispatch(logoutSucceeded());
           });
       });
   };
@@ -217,7 +231,7 @@ export function fetchCalendar() {
               });
           })
           .catch((error) => {
-            dispatch(connectionError(error));
+            dispatch(logoutSucceeded());
           });
       });
   };
@@ -227,7 +241,20 @@ export function fetchCalendarSucceeded(data) {
   return {
     type: "FETCH_CALENDAR_SUCCEEDED",
     payload: {
+      calendar: data.weeks,
+      username: data.username,
+      dogname: data.dogname
+    }
+  };
+}
+
+/*
+export function fetchCalendarSucceeded(data) {
+  return {
+    type: "FETCH_CALENDAR_SUCCEEDED",
+    payload: {
       calendar: data
     }
   };
 }
+*/
