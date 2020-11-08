@@ -31,6 +31,9 @@ function Paavalikko({ fetchCalendar, postLogout, calendar }) {
           {date}
         </Nav>
         <Nav>
+          <Nav.Link href="/api/v2/xslx">Excel</Nav.Link>
+        </Nav>
+        <Nav>
           <NavDropdown title="      " id="logout">
             <NavDropdown.Item onClick={() => postLogout()}>
               Logout
