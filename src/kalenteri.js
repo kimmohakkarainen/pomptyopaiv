@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Table, Tooltip, Overlay, OverlayTrigger } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 function Kalenteri({ calendar, onSelect }) {
   function onClick(event) {
