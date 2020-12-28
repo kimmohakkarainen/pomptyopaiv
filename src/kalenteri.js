@@ -9,7 +9,7 @@ function Kalenteri({ calendar, onSelect }) {
 
   return (
     <>
-      <Table bordered striped onClick={onClick}>
+      <Table bordered striped onClick={onClick} className="kalentr">
         <thead>
           <tr>
             <th>Ma</th>
