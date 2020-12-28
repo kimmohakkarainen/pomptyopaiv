@@ -1,5 +1,7 @@
 export default function pompState(
   state = {
+    username: "",
+    dogname: "",
     credentials: null,
     selectedDate: null,
     calendar: [],

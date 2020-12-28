@@ -77,5 +77,6 @@ export function getCalendar(access_token) {
       "Content-Type": "application/json"
     }
   });
-  return client.get("/rest/calendar");
+  return client.get("/api/v2/calendar");
+  /* return client.get("/rest/calendar"); */
 }
