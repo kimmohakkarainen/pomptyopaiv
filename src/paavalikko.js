@@ -31,7 +31,7 @@ function Paavalikko({ fetchCalendar, postLogout, calendar }) {
           {date}
         </Nav>
         <Nav>
-          <NavDropdown title="      " id="logout">
+          <NavDropdown alignRight title="      " id="logout">
             <NavDropdown.Item onClick={() => postLogout()}>
               Logout
             </NavDropdown.Item>

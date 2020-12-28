@@ -6,25 +6,17 @@
 body {
   background-color: #202020;
 }
-
-.hyv:hover:hover {
-  background-color: wheat;
-}
-
-.kal:hover:hover {
-  background-color: red;
-}
-
-.tyhja {
-  background-color: lightcoral;
-}
 td.today {
-  background-color: #30d0c0;
+  background-color: var(--dark);
   padding: 1px;
 }
 
+.kalentr {
+  color: white;
+  margin: 3em 0em 0em 0em;
+}
 div.today {
-  background-color: #40e0d0;
+  background-color: var(--dark);
   margin: 9px;
 }
 .yla {
@@ -91,4 +83,7 @@ div.card-header {
 }
 .yhtvet {
   padding: 2em;
+}
+div.dropdown-menu.show.dropdown-menu-right {
+  background-color: var(--light);
 }
