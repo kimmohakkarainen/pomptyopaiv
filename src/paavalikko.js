@@ -39,7 +39,7 @@ function Paavalikko({
           {date}
         </Nav>
         <Nav>
-          <NavDropdown title={title} id="logout">
+          <NavDropdown alignRight title="      " id="logout">
             <NavDropdown.Item onClick={() => postLogout()}>
               Logout
             </NavDropdown.Item>

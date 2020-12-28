@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {
-  Button,
-  Nav,
-  DropdownButton,
-  ButtonGroup,
-  Dropdown,
-  Accordion,
-  Card,
-  Form
-} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { postMerkinta } from "../actions";
 
 function Erottelu({ merkinta, postMerkinta }) {

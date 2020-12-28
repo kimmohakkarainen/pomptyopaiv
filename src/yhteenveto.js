@@ -1,20 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  Jumbotron,
-  Badge,
-  Button,
-  Nav,
-  DropdownButton,
-  ButtonGroup,
-  Dropdown,
-  Form,
-  Container,
-  Navbar,
-  Accordion,
-  Card,
-  Table
-} from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { fetchSummary } from "./actions";
 
 function Yhteenveto({ fetchSummary, summary, date }) {
@@ -87,13 +73,10 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSummary: params => dispatch(fetchSummary(params))
+    fetchSummary: (params) => dispatch(fetchSummary(params))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Yhteenveto);
+export default connect(mapStateToProps, mapDispatchToProps)(Yhteenveto);

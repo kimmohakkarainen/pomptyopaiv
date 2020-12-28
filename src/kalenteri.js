@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Table, Tooltip, Overlay, OverlayTrigger } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 function Kalenteri({ calendar, onSelect }) {
   function onClick(event) {
@@ -9,7 +9,7 @@ function Kalenteri({ calendar, onSelect }) {
 
   return (
     <>
-      <Table bordered striped onClick={onClick}>
+      <Table bordered striped onClick={onClick} className="kalentr">
         <thead>
           <tr>
             <th>Ma</th>

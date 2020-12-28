@@ -2,11 +2,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   Button,
-  Nav,
   DropdownButton,
   ButtonGroup,
   Dropdown,
-  Form,
   Accordion,
   Card,
   Container
@@ -33,13 +31,15 @@ const MERKINTALOOKUP = {
   kontakti: "kontakti",
   alytehtava: "älytehtävä",
   sosiaalistaminen: "sosiaalistaminen",
-  yksinolo: "yksin olo"
+  yksinolo: "yksin olo",
+  nouto: "nouto"
 };
 
 const NONOPENING = {
   namietsintasis: true,
   namietsintaulk: true,
-  alytehtava: true
+  alytehtava: true,
+  nouto: true
 };
 
 function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
@@ -101,6 +101,11 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
       date: date
     });
   }
+
+  function nouto() {
+    postMerkinta({ type: "nouto", date: date });
+  }
+
   return (
     <>
       <Container>
@@ -124,6 +129,9 @@ function Merkinta({ fetchMerkinnat, postMerkinta, merkinnat, date }) {
           </Button>
           <Button variant="dark" onClick={alytehtava}>
             lisää älytehtävä
+          </Button>
+          <Button variant="dark" onClick={nouto}>
+            lisää nouto
           </Button>
 
           <Button variant="dark" onClick={kontakti}>

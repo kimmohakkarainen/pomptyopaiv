@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {
-  Button,
-  Nav,
-  DropdownButton,
-  ButtonGroup,
-  Dropdown,
-  Accordion,
-  Card,
-  Form
-} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { postMerkinta } from "../actions";
 
 function Ilmaisu({ merkinta, postMerkinta }) {
@@ -79,7 +70,7 @@ function Ilmaisu({ merkinta, postMerkinta }) {
             as="textarea"
             rows="3"
             value={lopina}
-            onChange={e => setLopina(e.target.value)}
+            onChange={(e) => setLopina(e.target.value)}
             onBlur={onLopinaFocusOut}
           />
         </Form.Group>
@@ -94,13 +85,10 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    postMerkinta: params => dispatch(postMerkinta(params))
+    postMerkinta: (params) => dispatch(postMerkinta(params))
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Ilmaisu);
+export default connect(mapStateToProps, mapDispatchToProps)(Ilmaisu);
